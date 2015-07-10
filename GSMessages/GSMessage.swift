@@ -96,8 +96,8 @@ class GSMessage {
     static var font: UIFont = UIFont.systemFontOfSize(14)
     static var successBackgroundColor: UIColor = UIColor(red: 142.0/255, green: 183.0/255, blue: 64.0/255, alpha: 0.95)
     static var warningBackgroundColor: UIColor = UIColor(red: 230.0/255, green: 189.0/255, blue: 1.0/255, alpha: 0.95)
-    static var errorBackgroundColor: UIColor = UIColor(red: 230.0/255, green: 189.0/255, blue: 1.0/255, alpha: 0.95)
-    static var infoBackgroundColor: UIColor = UIColor(red: 230.0/255, green: 189.0/255, blue: 1.0/255, alpha: 0.95)
+    static var errorBackgroundColor: UIColor = UIColor(red: 219.0/255, green: 36.0/255, blue: 27.0/255, alpha: 0.70)
+    static var infoBackgroundColor: UIColor = UIColor(red: 44.0/255, green: 187.0/255, blue: 255.0/255, alpha: 0.90)
     
     class func showMessageAddedTo(view: UIView, text: String, type: GSMessageType, options: [GSMessageOption]?) {
         if view.installedMessage != nil && view.uninstallMessage == nil { view.hideMessage() }
