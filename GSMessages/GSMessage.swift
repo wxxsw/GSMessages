@@ -21,8 +21,8 @@ enum GSMessagePosition {
 }
 
 enum GSMessageAnimation {
-    case Fade
     case Slide
+    case Fade
 }
 
 enum GSMessageOption {
@@ -165,7 +165,7 @@ class GSMessage {
     private weak var view: UIView?
     private var message: UIView!
     private var messageText: UILabel!
-    private var animation: GSMessageAnimation = .Fade
+    private var animation: GSMessageAnimation = .Slide
     private var animationDuration: NSTimeInterval = 0.3
     private var autoHide: Bool = true
     private var autoHideDelay: Double = 4
