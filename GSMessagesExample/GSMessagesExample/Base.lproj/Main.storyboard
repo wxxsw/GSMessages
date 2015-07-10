@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="I20-T5-M6K">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="xZ4-ek-FBy">
+            <objects>
+                <navigationController id="I20-T5-M6K" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="xFb-6y-7le">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="mCk-T8-ryt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zos-rO-Elp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-208" y="320"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="GSMessagesExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NV4-UZ-kJS">
+                                <rect key="frame" x="131" y="137" width="59" height="30"/>
+                                <state key="normal" title="Success">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapSuccess:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="a9j-ql-acG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLA-RE-Wg8">
+                                <rect key="frame" x="143" y="187" width="34" height="30"/>
+                                <state key="normal" title="Error">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapError:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Kzi-Jf-YJ1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EhD-Xx-CAc">
+                                <rect key="frame" x="145" y="287" width="30" height="30"/>
+                                <state key="normal" title="Info">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapInfo:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="OC1-sN-wV5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmY-xp-gZB">
+                                <rect key="frame" x="132" y="237" width="57" height="30"/>
+                                <state key="normal" title="Warning">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapWarning:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Ab6-38-1tl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WmY-xp-gZB" firstAttribute="top" secondItem="TLA-RE-Wg8" secondAttribute="bottom" constant="20" id="21J-tW-eHL"/>
+                            <constraint firstItem="EhD-Xx-CAc" firstAttribute="top" secondItem="WmY-xp-gZB" secondAttribute="bottom" constant="20" id="AnT-JJ-MJ6"/>
+                            <constraint firstAttribute="centerX" secondItem="NV4-UZ-kJS" secondAttribute="centerX" id="L4g-Up-jhE"/>
+                            <constraint firstAttribute="centerY" secondItem="WmY-xp-gZB" secondAttribute="centerY" id="SD2-pO-ijw"/>
+                            <constraint firstItem="TLA-RE-Wg8" firstAttribute="top" secondItem="NV4-UZ-kJS" secondAttribute="bottom" constant="20" id="mUE-2P-QPr"/>
+                            <constraint firstAttribute="centerX" secondItem="TLA-RE-Wg8" secondAttribute="centerX" id="qrb-qX-2zW"/>
+                            <constraint firstAttribute="centerX" secondItem="WmY-xp-gZB" secondAttribute="centerX" id="vZM-5j-jKb"/>
+                            <constraint firstAttribute="centerX" secondItem="EhD-Xx-CAc" secondAttribute="centerX" id="y4w-Ba-qd6"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="aOm-K1-8Mv"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="198.40000000000001" y="320.92000000000002"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
