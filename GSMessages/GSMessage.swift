@@ -168,9 +168,9 @@ class GSMessage {
     private var animation: GSMessageAnimation = .Slide
     private var animationDuration: NSTimeInterval = 0.3
     private var autoHide: Bool = true
-    private var autoHideDelay: Double = 4
+    private var autoHideDelay: Double = 3
     private var backgroundColor: UIColor!
-    private var height: CGFloat = 50
+    private var height: CGFloat = 44
     private var position: GSMessagePosition = .Top
     private var textColor: UIColor = UIColor.whiteColor()
     private var y: CGFloat = 0

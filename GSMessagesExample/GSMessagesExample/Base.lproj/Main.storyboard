@@ -32,60 +32,128 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NV4-UZ-kJS">
-                                <rect key="frame" x="131" y="137" width="59" height="30"/>
-                                <state key="normal" title="Success">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="tapSuccess:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="a9j-ql-acG"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLA-RE-Wg8">
-                                <rect key="frame" x="143" y="187" width="34" height="30"/>
-                                <state key="normal" title="Error">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="tapError:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Kzi-Jf-YJ1"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EhD-Xx-CAc">
-                                <rect key="frame" x="145" y="287" width="30" height="30"/>
-                                <state key="normal" title="Info">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="tapInfo:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="OC1-sN-wV5"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmY-xp-gZB">
-                                <rect key="frame" x="132" y="237" width="57" height="30"/>
-                                <state key="normal" title="Warning">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="tapWarning:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Ab6-38-1tl"/>
-                                </connections>
-                            </button>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfO-5Z-7gs">
+                                <rect key="frame" x="0.0" y="50" width="320" height="404"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NV4-UZ-kJS">
+                                        <rect key="frame" x="21" y="20" width="60" height="30"/>
+                                        <state key="normal" title="Success">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapSuccess:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="a9j-ql-acG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLA-RE-Wg8">
+                                        <rect key="frame" x="89" y="20" width="60" height="30"/>
+                                        <state key="normal" title="Error">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapError:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Kzi-Jf-YJ1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EhD-Xx-CAc">
+                                        <rect key="frame" x="225" y="20" width="60" height="30"/>
+                                        <state key="normal" title="Info">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapInfo:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="OC1-sN-wV5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmY-xp-gZB">
+                                        <rect key="frame" x="157" y="20" width="60" height="30"/>
+                                        <state key="normal" title="Warning">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapWarning:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Ab6-38-1tl"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yx7-tJ-36H">
+                                        <rect key="frame" x="21" y="204" width="60" height="30"/>
+                                        <state key="normal" title="Bottom">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapBottom:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xgO-TP-dPd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k5F-Gi-7gm">
+                                        <rect key="frame" x="157" y="148" width="60" height="30"/>
+                                        <state key="normal" title="In View">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapInView:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Pt6-Xu-l2C"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4au-hP-40R">
+                                        <rect key="frame" x="225" y="148" width="60" height="30"/>
+                                        <state key="normal" title="Height">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapHeight:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Vsd-uK-kui"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKQ-90-cEx">
+                                        <rect key="frame" x="21" y="91" width="60" height="30"/>
+                                        <state key="normal" title="Endless">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapEndless:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="LuW-5P-trF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Tw-kY-b8F">
+                                        <rect key="frame" x="89" y="91" width="60" height="30"/>
+                                        <state key="normal" title="Dismiss">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapDismiss:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0oa-LH-hiT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oc6-hF-uX3">
+                                        <rect key="frame" x="21" y="148" width="60" height="30"/>
+                                        <state key="normal" title="Fade">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapFade:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="F56-iV-Huk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yEs-gP-zTn">
+                                        <rect key="frame" x="89" y="148" width="60" height="30"/>
+                                        <state key="normal" title="Long">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapLong:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="X7b-gZ-8kg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.95787805940000004" green="0.96489838289999996" blue="0.96489838289999996" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="WmY-xp-gZB" firstAttribute="top" secondItem="TLA-RE-Wg8" secondAttribute="bottom" constant="20" id="21J-tW-eHL"/>
-                            <constraint firstItem="EhD-Xx-CAc" firstAttribute="top" secondItem="WmY-xp-gZB" secondAttribute="bottom" constant="20" id="AnT-JJ-MJ6"/>
-                            <constraint firstAttribute="centerX" secondItem="NV4-UZ-kJS" secondAttribute="centerX" id="L4g-Up-jhE"/>
-                            <constraint firstAttribute="centerY" secondItem="WmY-xp-gZB" secondAttribute="centerY" id="SD2-pO-ijw"/>
-                            <constraint firstItem="TLA-RE-Wg8" firstAttribute="top" secondItem="NV4-UZ-kJS" secondAttribute="bottom" constant="20" id="mUE-2P-QPr"/>
-                            <constraint firstAttribute="centerX" secondItem="TLA-RE-Wg8" secondAttribute="centerX" id="qrb-qX-2zW"/>
-                            <constraint firstAttribute="centerX" secondItem="WmY-xp-gZB" secondAttribute="centerX" id="vZM-5j-jKb"/>
-                            <constraint firstAttribute="centerX" secondItem="EhD-Xx-CAc" secondAttribute="centerX" id="y4w-Ba-qd6"/>
+                            <constraint firstItem="rfO-5Z-7gs" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="50" id="2AE-wg-LaB"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="rfO-5Z-7gs" secondAttribute="bottom" constant="50" id="YYr-lf-kM0"/>
+                            <constraint firstItem="rfO-5Z-7gs" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="zjr-ka-5pM"/>
+                            <constraint firstAttribute="trailing" secondItem="rfO-5Z-7gs" secondAttribute="trailing" id="zwB-ny-beg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aOm-K1-8Mv"/>
+                    <connections>
+                        <outlet property="someView" destination="rfO-5Z-7gs" id="EoN-UE-TIp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="198.40000000000001" y="320.92000000000002"/>
+            <point key="canvasLocation" x="198" y="320"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
