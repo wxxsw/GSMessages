@@ -1,5 +1,8 @@
 # GSMessages
 Easy to use messages/notifications for iOS written in pure Swift.
+
+![](https://github.com/wxxsw/GSMessages/blob/master/demo.gif)
+
 ## Use
 ```Swift
 showSuccessMessage("Something success", options: nil)
