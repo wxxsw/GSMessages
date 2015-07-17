@@ -13,47 +13,48 @@ class ViewController: UIViewController {
     @IBOutlet weak var someView: UIView!
     
     @IBAction func tapSuccess(sender: AnyObject) {
-        showSuccessMessage("Something success", options: nil)
+        showMessage("Something success", type: .Success, options: nil)
     }
     
     @IBAction func tapError(sender: AnyObject) {
-        showErrorMessage("Something failed", options: nil)
+        showMessage("Something failed", type: .Error, options: nil)
     }
 
     @IBAction func tapWarning(sender: AnyObject) {
-        showWarningMessage("Some warning", options: nil)
+        showMessage("Some warning", type: .Warning, options: nil)
     }
     
     @IBAction func tapInfo(sender: AnyObject) {
-        showInfoMessage("Some message", options: nil)
+        showMessage("Some message", type: .Info, options: nil)
     }
     
     @IBAction func tapEndless(sender: AnyObject) {
-        showSuccessMessage("Endless", options: [.AutoHide(false)])
+        showMessage("Endless", type: .Success, options: [.AutoHide(false)])
     }
     
     @IBAction func tapDismiss(sender: AnyObject) {
         hideMessage()
+        someView.hideMessage()
     }
     
     @IBAction func tapFade(sender: AnyObject) {
-        showSuccessMessage("Fade", options: [.Animation(.Fade)])
+        showMessage("Fade", type: .Success, options: [.Animation(.Fade)])
     }
     
     @IBAction func tapLong(sender: AnyObject) {
-        showSuccessMessage("Long", options: [.AutoHideDelay(10)])
+        showMessage("Long", type: .Success, options: [.AutoHideDelay(10)])
     }
     
     @IBAction func tapInView(sender: AnyObject) {
-        someView.showSuccessMessage("In View", options: nil)
+        someView.showMessage("In View", type: .Success, options: nil)
     }
     
     @IBAction func tapHeight(sender: AnyObject) {
-        showSuccessMessage("Height", options: [.Height(100)])
+        showMessage("Height", type: .Success, options: [.Height(100)])
     }
     
     @IBAction func tapBottom(sender: AnyObject) {
-        showSuccessMessage("Bottom", options: [.Position(.Bottom)])
+        showMessage("Bottom", type: .Success, options: [.Position(.Bottom)])
     }
     
 }

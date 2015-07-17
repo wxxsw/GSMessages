@@ -37,22 +37,6 @@ enum GSMessageOption {
 
 extension UIViewController {
     
-    func showSuccessMessage(text: String, options: [GSMessageOption]?) {
-        showMessage(text, type: .Success, options: options)
-    }
-    
-    func showErrorMessage(text: String, options: [GSMessageOption]?) {
-        showMessage(text, type: .Error, options: options)
-    }
-    
-    func showWarningMessage(text: String, options: [GSMessageOption]?) {
-        showMessage(text, type: .Warning, options: options)
-    }
-    
-    func showInfoMessage(text: String, options: [GSMessageOption]?) {
-        showMessage(text, type: .Info, options: options)
-    }
-    
     func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?) {
         view.showMessage(text, type: type, options: options)
     }
@@ -64,22 +48,6 @@ extension UIViewController {
 }
 
 extension UIView {
-    
-    func showSuccessMessage(text: String, options: [GSMessageOption]?) {
-        showMessage(text, type: .Success, options: options)
-    }
-    
-    func showErrorMessage(text: String, options: [GSMessageOption]?) {
-        showMessage(text, type: .Error, options: options)
-    }
-    
-    func showWarningMessage(text: String, options: [GSMessageOption]?) {
-        showMessage(text, type: .Warning, options: options)
-    }
-    
-    func showInfoMessage(text: String, options: [GSMessageOption]?) {
-        showMessage(text, type: .Info, options: options)
-    }
     
     func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?) {
         GSMessage.showMessageAddedTo(self, text: text, type: type, options: options)

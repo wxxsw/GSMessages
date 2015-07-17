@@ -20,7 +20,7 @@
             </objects>
             <point key="canvasLocation" x="-208" y="320"/>
         </scene>
-        <!--View Controller-->
+        <!--GSMessages-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="GSMessagesExample" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfO-5Z-7gs">
-                                <rect key="frame" x="0.0" y="50" width="320" height="404"/>
+                                <rect key="frame" x="0.0" y="60" width="320" height="444"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NV4-UZ-kJS">
                                         <rect key="frame" x="21" y="20" width="60" height="30"/>
@@ -135,18 +135,18 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.95787805940000004" green="0.96489838289999996" blue="0.96489838289999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95787805940000004" green="0.96489838289999996" blue="0.96489838289999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="rfO-5Z-7gs" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="50" id="2AE-wg-LaB"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="rfO-5Z-7gs" secondAttribute="bottom" constant="50" id="YYr-lf-kM0"/>
+                            <constraint firstItem="rfO-5Z-7gs" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="60" id="2AE-wg-LaB"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="rfO-5Z-7gs" secondAttribute="bottom" id="YYr-lf-kM0"/>
                             <constraint firstItem="rfO-5Z-7gs" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="zjr-ka-5pM"/>
                             <constraint firstAttribute="trailing" secondItem="rfO-5Z-7gs" secondAttribute="trailing" id="zwB-ny-beg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="aOm-K1-8Mv"/>
+                    <navigationItem key="navigationItem" title="GSMessages" id="aOm-K1-8Mv"/>
                     <connections>
                         <outlet property="someView" destination="rfO-5Z-7gs" id="EoN-UE-TIp"/>
                     </connections>
