@@ -64,7 +64,7 @@ enum GSMessageAnimation {
 }
 ```
 
-To set a custom fonts and background colors in the following ways:
+To set custom fonts and background colors in the following ways:
 ```Swift
 GSMessage.font = UIFont.boldSystemFontOfSize(12)
 GSMessage.successBackgroundColor = .greenColor()
