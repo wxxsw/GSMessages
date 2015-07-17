@@ -8,24 +8,24 @@
 
 import UIKit
 
-enum GSMessageType {
+public enum GSMessageType {
     case Success
     case Error
     case Warning
     case Info
 }
 
-enum GSMessagePosition {
+public enum GSMessagePosition {
     case Top
     case Bottom
 }
 
-enum GSMessageAnimation {
+public enum GSMessageAnimation {
     case Slide
     case Fade
 }
 
-enum GSMessageOption {
+public enum GSMessageOption {
     case Animation(GSMessageAnimation)
     case AnimationDuration(NSTimeInterval)
     case AutoHide(Bool)
@@ -37,11 +37,11 @@ enum GSMessageOption {
 
 extension UIViewController {
     
-    func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?) {
+    public func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?) {
         view.showMessage(text, type: type, options: options)
     }
     
-    func hideMessage() {
+    public func hideMessage() {
         view.hideMessage()
     }
     
@@ -49,11 +49,11 @@ extension UIViewController {
 
 extension UIView {
     
-    func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?) {
+    public func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?) {
         GSMessage.showMessageAddedTo(self, text: text, type: type, options: options)
     }
     
-    func hideMessage() {
+    public func hideMessage() {
         installedMessage?.hide()
     }
     
