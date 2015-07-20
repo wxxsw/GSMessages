@@ -38,13 +38,13 @@ enum GSMessageType {
 
 ```Swift
 enum GSMessageOption {
-    case Animation(GSMessageAnimation)      // .Slide | .Fade
-    case AnimationDuration(NSTimeInterval)
-    case AutoHide(Bool)
-    case AutoHideDelay(Double)
-    case Height(CGFloat)
-    case Position(GSMessagePosition)        // .Top | .Bottom
-    case TextColor(UIColor)
+    case Animation(GSMessageAnimation)      // Default is .Slide (Other: .Fade)
+    case AnimationDuration(NSTimeInterval)  // Default is 0.3
+    case AutoHide(Bool)                     // Default is true
+    case AutoHideDelay(Double)              // Default is 3
+    case Height(CGFloat)                    // Default is 44.0
+    case Position(GSMessagePosition)        // Default is .Top (Other: .Bottom)
+    case TextColor(UIColor)                 // Default is .whiteColor()
 }
 ```
 
