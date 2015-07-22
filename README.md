@@ -59,14 +59,25 @@ GSMessage.errorBackgroundColor = .redColor()
 GSMessage.infoBackgroundColor = .blueColor()
 ```
 
+## Requirements
+
+- iOS 7.0+
+- Xcode 6.4 (Swift 1.2)
+
 ## Installation
 
-Feel free to drag `GSMessage.swift` to your iOS Project. But it's recommended to use CocoaPods
+> **Embedded frameworks require a minimum deployment target of iOS 8.**
+>
+> To use GSMessages with a project targeting iOS 7, you must to drag `GSMessage.swift` to your iOS Project.
 
 ### [CocoaPods](http://cocoapods.org/):
 
 In your `Podfile`:
 ```
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
 pod "GSMessages"
 ```
 
