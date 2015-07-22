@@ -38,7 +38,7 @@ public enum GSMessageOption {
 extension UIViewController {
     
     public func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?) {
-        view.showMessage(text, type: type, options: options)
+        GSMessage.showMessageAddedTo(view, text: text, type: type, options: options, inViewController: self)
     }
     
     public func hideMessage() {
@@ -50,7 +50,7 @@ extension UIViewController {
 extension UIView {
     
     public func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?) {
-        GSMessage.showMessageAddedTo(self, text: text, type: type, options: options)
+        GSMessage.showMessageAddedTo(self, text: text, type: type, options: options, inViewController: nil)
     }
     
     public func hideMessage() {
@@ -59,18 +59,18 @@ extension UIView {
     
 }
 
-class GSMessage {
+public class GSMessage {
     
-    static var font: UIFont = UIFont.systemFontOfSize(14)
-    static var successBackgroundColor: UIColor = UIColor(red: 142.0/255, green: 183.0/255, blue: 64.0/255, alpha: 0.95)
-    static var warningBackgroundColor: UIColor = UIColor(red: 230.0/255, green: 189.0/255, blue: 1.0/255, alpha: 0.95)
-    static var errorBackgroundColor: UIColor = UIColor(red: 219.0/255, green: 36.0/255, blue: 27.0/255, alpha: 0.70)
-    static var infoBackgroundColor: UIColor = UIColor(red: 44.0/255, green: 187.0/255, blue: 255.0/255, alpha: 0.90)
+    public static var font: UIFont = UIFont.systemFontOfSize(14)
+    public static var successBackgroundColor: UIColor = UIColor(red: 142.0/255, green: 183.0/255, blue: 64.0/255, alpha: 0.95)
+    public static var warningBackgroundColor: UIColor = UIColor(red: 230.0/255, green: 189.0/255, blue: 1.0/255, alpha: 0.95)
+    public static var errorBackgroundColor: UIColor = UIColor(red: 219.0/255, green: 36.0/255, blue: 27.0/255, alpha: 0.70)
+    public static var infoBackgroundColor: UIColor = UIColor(red: 44.0/255, green: 187.0/255, blue: 255.0/255, alpha: 0.90)
     
-    class func showMessageAddedTo(view: UIView, text: String, type: GSMessageType, options: [GSMessageOption]?) {
+    class func showMessageAddedTo(view: UIView, text: String, type: GSMessageType, options: [GSMessageOption]?, inViewController: UIViewController?) {
         if view.installedMessage != nil && view.uninstallMessage == nil { view.hideMessage() }
         if view.installedMessage == nil {
-            GSMessage(view: view, text: text, type: type, options: options).show()
+            GSMessage(view: view, text: text, type: type, options: options, inViewController: inViewController).show()
         }
     }
     
@@ -87,7 +87,7 @@ class GSMessage {
         }
             
         else if animation == .Slide && position == .Top {
-            message.transform = CGAffineTransformMakeTranslation(0, -height)
+            message.transform = CGAffineTransformMakeTranslation(0, -messageHeight)
             UIView.animateWithDuration(animationDuration) { self.message.transform = CGAffineTransformMakeTranslation(0, 0) }
         }
             
@@ -116,7 +116,7 @@ class GSMessage {
             
         else if animation == .Slide && position == .Top {
             UIView.animateWithDuration(self.animationDuration,
-                animations: { [weak self] in if let this = self { this.message.transform = CGAffineTransformMakeTranslation(0, -this.height) } },
+                animations: { [weak self] in if let this = self { this.message.transform = CGAffineTransformMakeTranslation(0, -this.messageHeight) } },
                 completion: { [weak self] finished in self?.removeFromSuperview() }
             )
         }
@@ -139,11 +139,14 @@ class GSMessage {
     private var autoHideDelay: Double = 3
     private var backgroundColor: UIColor!
     private var height: CGFloat = 44
+    private var offsetY: CGFloat = 0
     private var position: GSMessagePosition = .Top
     private var textColor: UIColor = UIColor.whiteColor()
     private var y: CGFloat = 0
     
-    private init(view: UIView, text: String, type: GSMessageType, options: [GSMessageOption]?) {
+    private var messageHeight: CGFloat { return offsetY + height }
+    
+    private init(view: UIView, text: String, type: GSMessageType, options: [GSMessageOption]?, inViewController: UIViewController?) {
         
         switch type {
         case .Success:  backgroundColor = GSMessage.successBackgroundColor
@@ -167,14 +170,24 @@ class GSMessage {
         }
         
         switch position {
-        case .Top:      y = 0
-        case .Bottom:   y = view.bounds.size.height - height
+        case .Top:
+            if let inViewController = inViewController {
+                var navigation = inViewController.navigationController ?? (inViewController as? UINavigationController)
+                var navigationBarHidden = (navigation?.navigationBarHidden ?? true)
+                var navigationBarTranslucent = (navigation?.navigationBar.translucent ?? false)
+                var statusBarHidden = UIApplication.sharedApplication().statusBarHidden
+                if !navigationBarHidden && navigationBarTranslucent && !statusBarHidden { offsetY+=20 }
+                if !navigationBarHidden && navigationBarTranslucent { offsetY+=44; }
+                if (navigationBarHidden && !statusBarHidden) { offsetY+=20 }
+            }
+        case .Bottom:
+            y = view.bounds.size.height - height
         }
         
-        message = UIView(frame: CGRect(x: 0, y: y, width: view.bounds.size.width, height: height))
+        message = UIView(frame: CGRect(x: 0, y: y, width: view.bounds.size.width, height: messageHeight))
         message.backgroundColor = backgroundColor
         
-        messageText = UILabel(frame: message.bounds)
+        messageText = UILabel(frame: CGRect(x: 0, y: offsetY, width: message.bounds.size.width, height: height))
         messageText.text = text
         messageText.font = GSMessage.font
         messageText.textColor = textColor
@@ -193,12 +206,12 @@ class GSMessage {
 
 extension UIView {
     
-    var installedMessage: GSMessage? {
+    private var installedMessage: GSMessage? {
         get { return objc_getAssociatedObject(self, &installedMessageKey) as? GSMessage }
         set { objc_setAssociatedObject(self, &installedMessageKey, newValue, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC)) }
     }
     
-    var uninstallMessage: GSMessage? {
+    private var uninstallMessage: GSMessage? {
         get { return objc_getAssociatedObject(self, &uninstallMessageKey) as? GSMessage }
         set { objc_setAssociatedObject(self, &uninstallMessageKey, newValue, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC)) }
     }

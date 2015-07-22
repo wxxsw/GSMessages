@@ -57,5 +57,9 @@ class ViewController: UIViewController {
         showMessage("Bottom", type: .Success, options: [.Position(.Bottom)])
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
 }
 
