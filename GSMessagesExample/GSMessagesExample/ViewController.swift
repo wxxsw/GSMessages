@@ -57,8 +57,12 @@ class ViewController: UIViewController {
         showMessage("Bottom", type: .Success, options: [.Position(.Bottom)])
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return true
+    @IBAction func tapToggleNavBarTranslucent(sender: AnyObject) {
+        navigationController!.navigationBar.translucent = !navigationController!.navigationBar.translucent
+    }
+    
+    @IBAction func tapToggleNavBarHidden(sender: AnyObject) {
+        navigationController!.setNavigationBarHidden(!navigationController!.navigationBarHidden, animated: true)
     }
     
 }
