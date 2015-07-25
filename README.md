@@ -42,14 +42,13 @@ self.showMessage("...", type: .Info, options: nil)
 ##### Options:
 
 ```Swift
-self.showMessage("...", type: .Info, options: [.Animation(.Fade),       // Default is .Slide
-                                               .AnimationDuration(0.4)  // Default is 0.3
-                                               .AutoHide(false),        // Default is true
-                                               .AutoHideDelay(2),       // Default is 3
-                                               .Height(64.0),           // Default is 44.0
-                                               .Position(.Bottom),      // Default is .Top
-                                               .TextColor(.redColor())  // Default is .whiteColor()
-                                                ]
+self.showMessage("...", type: .Info, options: [.Animation(.Slide),        // .Slide || .Fade
+                                               .AnimationDuration(0.3),
+                                               .AutoHide(true),
+                                               .AutoHideDelay(3.0),
+                                               .Height(44.0),
+                                               .Position(.Top),           // .Top || .Bottom
+                                               .TextColor(.whiteColor())]
 ```
 
 ## Font / Background Color
