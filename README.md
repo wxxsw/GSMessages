@@ -26,26 +26,30 @@ self.hideMessage()
 ##### Type:
 
 ```Swift
-enum GSMessageType {
-    case Success
-    case Error
-    case Warning
-    case Info
-}
+// Something success
+self.showMessage("...", type: .Success, options: nil)
+
+// Something failed
+self.showMessage("...", type: .Error, options: nil)
+
+// Some Warning
+self.showMessage("...", type: .Warning, options: nil)
+
+// Some Message
+self.showMessage("...", type: .Info, options: nil)
 ```
 
 ##### Options:
 
 ```Swift
-enum GSMessageOption {
-    case Animation(GSMessageAnimation)      // Default is .Slide (Other: .Fade)
-    case AnimationDuration(NSTimeInterval)  // Default is 0.3
-    case AutoHide(Bool)                     // Default is true
-    case AutoHideDelay(Double)              // Default is 3
-    case Height(CGFloat)                    // Default is 44.0
-    case Position(GSMessagePosition)        // Default is .Top (Other: .Bottom)
-    case TextColor(UIColor)                 // Default is .whiteColor()
-}
+self.showMessage("...", type: .Info, options: [.Animation(.Fade),       // Default is .Slide
+                                               .AnimationDuration(0.4)  // Default is 0.3
+                                               .AutoHide(false),        // Default is true
+                                               .AutoHideDelay(2),       // Default is 3
+                                               .Height(64.0),           // Default is 44.0
+                                               .Position(.Bottom),      // Default is .Top
+                                               .TextColor(.redColor())  // Default is .whiteColor()
+                                                ]
 ```
 
 ## Font / Background Color
