@@ -24,15 +24,16 @@ self.hideMessage()
 ##### Parameters:
 
 ```Swift
-self.showMessage("Some Text...", 
-                 type: .Success,                  // .Success || .Error || .Warning || .Info 
-                 options: [.Animation(.Slide),      // .Slide || .Fade
-                           .AnimationDuration(0.3),
-                           .AutoHide(true),
-                           .AutoHideDelay(3.0),
-                           .Height(44.0),
-                           .Position(.Top),           // .Top || .Bottom
-                           .TextColor(.whiteColor())]
+// type: .Success || .Error || .Warning || .Info
+// Animation: .Slide || .Fade
+// Position: .Top || .Bottom
+self.showMessage("Some Text...", type: .Success, options: [.Animation(.Slide), 
+                                                           .AnimationDuration(0.3),
+                                                           .AutoHide(true),
+                                                           .AutoHideDelay(3.0),
+                                                           .Height(44.0),
+                                                           .Position(.Top),
+                                                           .TextColor(.whiteColor())]
 ```
 
 ## Font / Background Color
