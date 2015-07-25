@@ -25,13 +25,13 @@ self.hideMessage()
 
 ```Swift
 self.showMessage("Some Text...", 
-                 type: .Success,                    // .Success || .Error || .Warning || .Info 
-                 options: [.Animation(.Slide),        // .Slide || .Fade
+                 type: .Success,                  // .Success || .Error || .Warning || .Info 
+                 options: [.Animation(.Slide),      // .Slide || .Fade
                            .AnimationDuration(0.3),
                            .AutoHide(true),
                            .AutoHideDelay(3.0),
                            .Height(44.0),
-                           .Position(.Top),             // .Top || .Bottom
+                           .Position(.Top),           // .Top || .Bottom
                            .TextColor(.whiteColor())]
 ```
 
