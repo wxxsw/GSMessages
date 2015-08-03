@@ -24,9 +24,9 @@ self.hideMessage()
 ##### Parameters:
 
 ```Swift
-// type: .Success || .Error || .Warning || .Info
-// Animation: .Slide || .Fade
-// Position: .Top || .Bottom
+// Type: Success / Error / Warning / Info
+// Animation: Slide / Fade
+// Position: Top / Bottom
 self.showMessage("Some Text...", type: .Success, options: [.Animation(.Slide), 
                                                            .AnimationDuration(0.3),
                                                            .AutoHide(true),
