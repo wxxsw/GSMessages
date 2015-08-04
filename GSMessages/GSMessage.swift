@@ -33,6 +33,7 @@ public enum GSMessageOption {
     case Height(CGFloat)
     case Position(GSMessagePosition)
     case TextColor(UIColor)
+    case TextPadding(CGFloat)
 }
 
 extension UIViewController {
@@ -142,6 +143,7 @@ public class GSMessage {
     private var offsetY: CGFloat = 0
     private var position: GSMessagePosition = .Top
     private var textColor: UIColor = UIColor.whiteColor()
+    private var textPadding: CGFloat = 30
     private var y: CGFloat = 0
     
     private var messageHeight: CGFloat { return offsetY + height }
@@ -165,6 +167,7 @@ public class GSMessage {
                 case let .Height(value): height = value
                 case let .Position(value): position = value
                 case let .TextColor(value): textColor = value
+                case let .TextPadding(value): textPadding = value
                 }
             }
         }
@@ -187,7 +190,7 @@ public class GSMessage {
         message = UIView(frame: CGRect(x: 0, y: y, width: view.bounds.size.width, height: messageHeight))
         message.backgroundColor = backgroundColor
         
-        messageText = UILabel(frame: CGRect(x: 0, y: offsetY, width: message.bounds.size.width, height: height))
+        messageText = UILabel(frame: CGRect(x: textPadding, y: offsetY, width: message.bounds.size.width - textPadding * 2, height: height))
         messageText.text = text
         messageText.font = GSMessage.font
         messageText.textColor = textColor
