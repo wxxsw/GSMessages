@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "GSMessages"
-  s.version      = "1.1.2"
+  s.version      = "1.1.3"
   s.summary      = "Easy to use messages/notifications for iOS written in pure Swift."
   s.homepage     = "https://github.com/wxxsw/GSMessages"
 
