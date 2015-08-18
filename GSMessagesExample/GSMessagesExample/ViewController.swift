@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tapEndless(sender: AnyObject) {
-        showMessage("Endless", type: .Success, options: [.AutoHide(false)])
+        showMessage("Endless", type: .Success, options: [.AutoHide(false), .HideOnTap(false)])
     }
     
     @IBAction func tapDismiss(sender: AnyObject) {

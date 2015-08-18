@@ -1,6 +1,6 @@
 # GSMessages
 
-Easy to use messages/notifications for iOS written in pure Swift. Inspired from [TSMessages](https://github.com/KrauseFx/TSMessages)
+A simple style messages/notifications for iOS 7+, in Swift.
 
 ![](https://github.com/wxxsw/GSMessages/blob/master/demo.gif)
 
@@ -32,6 +32,7 @@ self.showMessage("Some Text...", type: .Success, options: [.Animation(.Slide),
                                                            .AutoHide(true),
                                                            .AutoHideDelay(3.0),
                                                            .Height(44.0),
+                                                           .HideOnTap(true)
                                                            .Position(.Top),
                                                            .TextColor(.whiteColor())]
 ```

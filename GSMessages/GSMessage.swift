@@ -31,6 +31,7 @@ public enum GSMessageOption {
     case AutoHide(Bool)
     case AutoHideDelay(Double) // Second
     case Height(CGFloat)
+    case HideOnTap(Bool)
     case Position(GSMessagePosition)
     case TextColor(UIColor)
     case TextPadding(CGFloat)
@@ -98,7 +99,7 @@ public class GSMessage {
         }
         
         if autoHide { GCDAfter(autoHideDelay) { self.hide() } }
-        
+
     }
     
     func hide() {
@@ -140,6 +141,7 @@ public class GSMessage {
     private var autoHideDelay: Double = 3
     private var backgroundColor: UIColor!
     private var height: CGFloat = 44
+    private var hideOnTap: Bool = true
     private var offsetY: CGFloat = 0
     private var position: GSMessagePosition = .Top
     private var textColor: UIColor = UIColor.whiteColor()
@@ -165,6 +167,7 @@ public class GSMessage {
                 case let .AutoHide(value): autoHide = value
                 case let .AutoHideDelay(value): autoHideDelay = value
                 case let .Height(value): height = value
+                case let .HideOnTap(value): hideOnTap = value
                 case let .Position(value): position = value
                 case let .TextColor(value): textColor = value
                 case let .TextPadding(value): textPadding = value
@@ -197,7 +200,13 @@ public class GSMessage {
         messageText.textAlignment = .Center
         message.addSubview(messageText)
         
+        if hideOnTap { message.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:")) }
+        
         self.view = view
+    }
+    
+    @objc private func handleTap(tapGesture: UITapGestureRecognizer) {
+        hide()
     }
     
     private func removeFromSuperview() {
