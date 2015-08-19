@@ -1,6 +1,6 @@
 # GSMessages
 
-A simple style messages/notifications for iOS 7+, in Swift.
+## Demo
 
 ![](https://github.com/wxxsw/GSMessages/blob/master/demo.gif)
 
