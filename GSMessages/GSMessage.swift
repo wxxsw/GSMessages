@@ -150,7 +150,7 @@ public class GSMessage {
     
     private var messageHeight: CGFloat { return offsetY + height }
     
-    private init(view: UIView, text: String, type: GSMessageType, options: [GSMessageOption]?, inViewController: UIViewController?) {
+    private init(var view: UIView, text: String, type: GSMessageType, options: [GSMessageOption]?, inViewController: UIViewController?) {
         
         switch type {
         case .Success:  backgroundColor = GSMessage.successBackgroundColor
@@ -188,6 +188,12 @@ public class GSMessage {
             }
         case .Bottom:
             y = view.bounds.size.height - height
+        }
+        
+        if let inTableViewController = inViewController as? UITableViewController {
+            if let lastWindowView = UIApplication.sharedApplication().windows.last as? UIView {
+                view = lastWindowView
+            }
         }
         
         message = UIView(frame: CGRect(x: 0, y: y, width: view.bounds.size.width, height: messageHeight))
