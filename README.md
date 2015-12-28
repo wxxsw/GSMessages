@@ -51,7 +51,7 @@ GSMessage.infoBackgroundColor = .blueColor()
 ## Requirements
 
 - iOS 7.0+
-- Xcode 6.4 (Swift 1.2)
+- Xcode 7.2 (Swift 2.0)
 
 ## Installation
 
