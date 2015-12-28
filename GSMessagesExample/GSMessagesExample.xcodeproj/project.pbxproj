@@ -12,19 +12,8 @@
 		1885CFD01B4F6FA100F49F2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1885CFCE1B4F6FA100F49F2A /* Main.storyboard */; };
 		1885CFD21B4F6FA100F49F2A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1885CFD11B4F6FA100F49F2A /* Images.xcassets */; };
 		1885CFD51B4F6FA100F49F2A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1885CFD31B4F6FA100F49F2A /* LaunchScreen.xib */; };
-		1885CFE11B4F6FA200F49F2A /* GSMessagesExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885CFE01B4F6FA200F49F2A /* GSMessagesExampleTests.swift */; };
 		1885CFEC1B4F70DD00F49F2A /* GSMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885CFEB1B4F70DD00F49F2A /* GSMessage.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		1885CFDB1B4F6FA200F49F2A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1885CFBD1B4F6FA100F49F2A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1885CFC41B4F6FA100F49F2A;
-			remoteInfo = GSMessagesExample;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1885CFC51B4F6FA100F49F2A /* GSMessagesExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GSMessagesExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34,21 +23,11 @@
 		1885CFCF1B4F6FA100F49F2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1885CFD11B4F6FA100F49F2A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1885CFD41B4F6FA100F49F2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		1885CFDA1B4F6FA200F49F2A /* GSMessagesExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GSMessagesExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1885CFDF1B4F6FA200F49F2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1885CFE01B4F6FA200F49F2A /* GSMessagesExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSMessagesExampleTests.swift; sourceTree = "<group>"; };
 		1885CFEB1B4F70DD00F49F2A /* GSMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		1885CFC21B4F6FA100F49F2A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1885CFD71B4F6FA200F49F2A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -63,7 +42,6 @@
 			children = (
 				1885CFEA1B4F70DD00F49F2A /* GSMessages */,
 				1885CFC71B4F6FA100F49F2A /* GSMessagesExample */,
-				1885CFDD1B4F6FA200F49F2A /* GSMessagesExampleTests */,
 				1885CFC61B4F6FA100F49F2A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,7 +50,6 @@
 			isa = PBXGroup;
 			children = (
 				1885CFC51B4F6FA100F49F2A /* GSMessagesExample.app */,
-				1885CFDA1B4F6FA200F49F2A /* GSMessagesExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,23 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				1885CFC91B4F6FA100F49F2A /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		1885CFDD1B4F6FA200F49F2A /* GSMessagesExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				1885CFE01B4F6FA200F49F2A /* GSMessagesExampleTests.swift */,
-				1885CFDE1B4F6FA200F49F2A /* Supporting Files */,
-			);
-			path = GSMessagesExampleTests;
-			sourceTree = "<group>";
-		};
-		1885CFDE1B4F6FA200F49F2A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				1885CFDF1B4F6FA200F49F2A /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -144,24 +104,6 @@
 			productReference = 1885CFC51B4F6FA100F49F2A /* GSMessagesExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1885CFD91B4F6FA200F49F2A /* GSMessagesExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1885CFE71B4F6FA200F49F2A /* Build configuration list for PBXNativeTarget "GSMessagesExampleTests" */;
-			buildPhases = (
-				1885CFD61B4F6FA200F49F2A /* Sources */,
-				1885CFD71B4F6FA200F49F2A /* Frameworks */,
-				1885CFD81B4F6FA200F49F2A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1885CFDC1B4F6FA200F49F2A /* PBXTargetDependency */,
-			);
-			name = GSMessagesExampleTests;
-			productName = GSMessagesExampleTests;
-			productReference = 1885CFDA1B4F6FA200F49F2A /* GSMessagesExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -175,10 +117,6 @@
 				TargetAttributes = {
 					1885CFC41B4F6FA100F49F2A = {
 						CreatedOnToolsVersion = 6.4;
-					};
-					1885CFD91B4F6FA200F49F2A = {
-						CreatedOnToolsVersion = 6.4;
-						TestTargetID = 1885CFC41B4F6FA100F49F2A;
 					};
 				};
 			};
@@ -196,7 +134,6 @@
 			projectRoot = "";
 			targets = (
 				1885CFC41B4F6FA100F49F2A /* GSMessagesExample */,
-				1885CFD91B4F6FA200F49F2A /* GSMessagesExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -209,13 +146,6 @@
 				1885CFD01B4F6FA100F49F2A /* Main.storyboard in Resources */,
 				1885CFD51B4F6FA100F49F2A /* LaunchScreen.xib in Resources */,
 				1885CFD21B4F6FA100F49F2A /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1885CFD81B4F6FA200F49F2A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,23 +162,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1885CFD61B4F6FA200F49F2A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1885CFE11B4F6FA200F49F2A /* GSMessagesExampleTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		1885CFDC1B4F6FA200F49F2A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1885CFC41B4F6FA100F49F2A /* GSMessagesExample */;
-			targetProxy = 1885CFDB1B4F6FA200F49F2A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1885CFCE1B4F6FA100F49F2A /* Main.storyboard */ = {
@@ -376,42 +290,6 @@
 			};
 			name = Release;
 		};
-		1885CFE81B4F6FA200F49F2A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = GSMessagesExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.gesen.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GSMessagesExample.app/GSMessagesExample";
-			};
-			name = Debug;
-		};
-		1885CFE91B4F6FA200F49F2A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = GSMessagesExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.gesen.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GSMessagesExample.app/GSMessagesExample";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -429,15 +307,6 @@
 			buildConfigurations = (
 				1885CFE51B4F6FA200F49F2A /* Debug */,
 				1885CFE61B4F6FA200F49F2A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1885CFE71B4F6FA200F49F2A /* Build configuration list for PBXNativeTarget "GSMessagesExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1885CFE81B4F6FA200F49F2A /* Debug */,
-				1885CFE91B4F6FA200F49F2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

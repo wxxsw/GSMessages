@@ -190,9 +190,9 @@ public class GSMessage {
             y = view.bounds.size.height - height
         }
         
-        if let inTableViewController = inViewController as? UITableViewController {
-            if let lastWindowView = UIApplication.sharedApplication().windows.last as? UIView {
-                view = lastWindowView
+        if inViewController is UITableViewController {
+            if let lastWindow = UIApplication.sharedApplication().windows.last {
+                view = lastWindow as UIView
             }
         }
         
