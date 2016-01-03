@@ -74,7 +74,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yx7-tJ-36H">
-                                        <rect key="frame" x="20" y="237" width="60" height="44"/>
+                                        <rect key="frame" x="20" y="265" width="60" height="44"/>
                                         <state key="normal" title="Bottom">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -161,6 +161,15 @@
                                         </state>
                                         <connections>
                                             <action selector="tapCenter:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Vm6-Vt-UGk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BhL-AO-nxi">
+                                        <rect key="frame" x="16" y="219" width="69" height="44"/>
+                                        <state key="normal" title="Very Long">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapVeryLong:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="IqO-qM-5cd"/>
                                         </connections>
                                     </button>
                                 </subviews>
