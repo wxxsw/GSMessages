@@ -53,6 +53,18 @@ class ViewController: UIViewController {
         showMessage("Height", type: .Success, options: [.Height(100)])
     }
     
+    @IBAction func tapLeft(sender: AnyObject) {
+        showMessage("Left", type: .Success, options: [.TextAlignment(.Left)])
+    }
+    
+    @IBAction func tapCenter(sender: AnyObject) {
+        showMessage("center", type: .Success, options: [.TextAlignment(.Center)])
+    }
+    
+    @IBAction func tapRight(sender: AnyObject) {
+        showMessage("Right", type: .Success, options: [.TextAlignment(.Right)])
+    }
+    
     @IBAction func tapBottom(sender: AnyObject) {
         showMessage("Bottom", type: .Success, options: [.Position(.Bottom)])
     }
