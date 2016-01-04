@@ -28,8 +28,8 @@ self.hideMessage()
 // Type          : Success / Error / Warning / Info
 // Animation     : Slide / Fade
 // Position      : Top / Bottom
-// TextAlignment : Left / Center / Right 
-self.showMessage("Some Text...", type: .Success, options: [.Animation(.Slide), 
+// TextAlignment : Left / Center / Right
+self.showMessage("Some Text...", type: .Success, options: [.Animation(.Slide),
                                                            .AnimationDuration(0.3),
                                                            .AutoHide(true),
                                                            .AutoHideDelay(3.0),
@@ -73,6 +73,19 @@ platform :ios, '8.0'
 use_frameworks!
 
 pod "GSMessages"
+```
+
+And in your `*.swift`:
+```swift
+import GSMessages
+```
+
+### [Carthage](https://github.com/Carthage/Carthage):
+
+In your `Cartfile`:
+
+```
+github "wxxsw/GSMessages"
 ```
 
 And in your `*.swift`:
