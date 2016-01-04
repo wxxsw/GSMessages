@@ -35,6 +35,8 @@ public enum GSMessageOption {
     case Position(GSMessagePosition)
     case TextColor(UIColor)
     case TextPadding(CGFloat)
+    case TextAlignment(NSTextAlignment)
+    case TextNumberOfLines(Int)
 }
 
 extension UIViewController {
@@ -146,6 +148,8 @@ public class GSMessage {
     private var position: GSMessagePosition = .Top
     private var textColor: UIColor = UIColor.whiteColor()
     private var textPadding: CGFloat = 30
+    private var textAlignment: NSTextAlignment = .Center
+    private var textNumberOfLines: Int = 1
     private var y: CGFloat = 0
     
     private var messageHeight: CGFloat { return offsetY + height }
@@ -171,6 +175,9 @@ public class GSMessage {
                 case let .Position(value): position = value
                 case let .TextColor(value): textColor = value
                 case let .TextPadding(value): textPadding = value
+                case let .TextAlignment(value): textAlignment = value
+                case let .TextAlignment(value): textAlignment = value
+                case let .TextNumberOfLines(value): textNumberOfLines = value
                 }
             }
         }
@@ -203,7 +210,8 @@ public class GSMessage {
         messageText.text = text
         messageText.font = GSMessage.font
         messageText.textColor = textColor
-        messageText.textAlignment = .Center
+        messageText.textAlignment = textAlignment
+        messageText.numberOfLines = textNumberOfLines
         message.addSubview(messageText)
         
         if hideOnTap { message.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:")) }

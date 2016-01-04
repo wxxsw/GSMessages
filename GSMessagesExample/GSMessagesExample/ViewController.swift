@@ -53,6 +53,22 @@ class ViewController: UIViewController {
         showMessage("Height", type: .Success, options: [.Height(100)])
     }
     
+    @IBAction func tapLeft(sender: AnyObject) {
+        showMessage("Left", type: .Success, options: [.TextAlignment(.Left)])
+    }
+    
+    @IBAction func tapCenter(sender: AnyObject) {
+        showMessage("center", type: .Success, options: [.TextAlignment(.Center)])
+    }
+    
+    @IBAction func tapRight(sender: AnyObject) {
+        showMessage("Right", type: .Success, options: [.TextAlignment(.Right)])
+    }
+    
+    @IBAction func tapVeryLong(sender: AnyObject) {
+        showMessage("This will be a very long message that someone wanna show in a high message", type: .Success, options: [.Height(100), .TextNumberOfLines(2)])
+    }
+    
     @IBAction func tapBottom(sender: AnyObject) {
         showMessage("Bottom", type: .Success, options: [.Position(.Bottom)])
     }
