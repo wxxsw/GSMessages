@@ -21,12 +21,14 @@ To hide a notification manually:
 self.hideMessage()
 ```
 
-##### Parameters:
+##### Parameters (Current setting is default value):
+
 
 ```Swift
-// Type      : Success / Error / Warning / Info
-// Animation : Slide / Fade
-// Position  : Top / Bottom
+// Type          : Success / Error / Warning / Info
+// Animation     : Slide / Fade
+// Position      : Top / Bottom
+// TextAlignment : Left / Center / Right 
 self.showMessage("Some Text...", type: .Success, options: [.Animation(.Slide), 
                                                            .AnimationDuration(0.3),
                                                            .AutoHide(true),
@@ -36,7 +38,8 @@ self.showMessage("Some Text...", type: .Success, options: [.Animation(.Slide),
                                                            .Position(.Top),
                                                            .TextAlignment(.Center),
                                                            .TextColor(UIColor.whiteColor()),
-                                                           .TextNumberOfLines(1)]
+                                                           .TextNumberOfLines(1),
+                                                           .TextPadding(30.0)]
 ```
 
 ## Font / Background Color
