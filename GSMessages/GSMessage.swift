@@ -176,7 +176,6 @@ public class GSMessage {
                 case let .TextColor(value): textColor = value
                 case let .TextPadding(value): textPadding = value
                 case let .TextAlignment(value): textAlignment = value
-                case let .TextAlignment(value): textAlignment = value
                 case let .TextNumberOfLines(value): textNumberOfLines = value
                 }
             }

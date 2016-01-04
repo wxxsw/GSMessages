@@ -24,9 +24,9 @@ self.hideMessage()
 ##### Parameters:
 
 ```Swift
-// Type: Success / Error / Warning / Info
-// Animation: Slide / Fade
-// Position: Top / Bottom
+// Type      : Success / Error / Warning / Info
+// Animation : Slide / Fade
+// Position  : Top / Bottom
 self.showMessage("Some Text...", type: .Success, options: [.Animation(.Slide), 
                                                            .AnimationDuration(0.3),
                                                            .AutoHide(true),
@@ -34,7 +34,9 @@ self.showMessage("Some Text...", type: .Success, options: [.Animation(.Slide),
                                                            .Height(44.0),
                                                            .HideOnTap(true)
                                                            .Position(.Top),
-                                                           .TextColor(.whiteColor())]
+                                                           .TextAlignment(.Center),
+                                                           .TextColor(UIColor.whiteColor()),
+                                                           .TextNumberOfLines(1)]
 ```
 
 ## Font / Background Color
