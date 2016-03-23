@@ -154,8 +154,10 @@ public class GSMessage {
 
     private var messageHeight: CGFloat { return offsetY + height }
 
-    private init(var view: UIView, text: String, type: GSMessageType, options: [GSMessageOption]?, inViewController: UIViewController?) {
+    private init(view: UIView, text: String, type: GSMessageType, options: [GSMessageOption]?, inViewController: UIViewController?) {
 
+        var view = view
+        
         switch type {
         case .Success:  backgroundColor = GSMessage.successBackgroundColor
         case .Warning:  backgroundColor = GSMessage.warningBackgroundColor
@@ -213,7 +215,7 @@ public class GSMessage {
         messageText.numberOfLines = textNumberOfLines
         message.addSubview(messageText)
 
-        if hideOnTap { message.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:")) }
+        if hideOnTap { message.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(GSMessage.handleTap(_:)))) }
 
         self.view = view
     }
