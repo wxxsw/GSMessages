@@ -46,11 +46,11 @@ self.showMessage("Some Text...", type: .Success, options: [.Animation(.Slide),
 
 To set custom fonts and background colors in the following ways:
 ```Swift
-GSMessage.font = UIFont.boldSystemFontOfSize(12)
-GSMessage.successBackgroundColor = .greenColor()
-GSMessage.warningBackgroundColor = .yellowColor()
-GSMessage.errorBackgroundColor = .redColor()
-GSMessage.infoBackgroundColor = .blueColor()
+GSMessage.font = UIFont.boldSystemFontOfSize(14)
+GSMessage.successBackgroundColor = UIColor(red: 142.0/255, green: 183.0/255, blue: 64.0/255, alpha: 0.95)
+GSMessage.warningBackgroundColor = UIColor(red: 230.0/255, green: 189.0/255, blue: 1.0/255, alpha: 0.95)
+GSMessage.errorBackgroundColor   = UIColor(red: 219.0/255, green: 36.0/255, blue: 27.0/255, alpha: 0.70)
+GSMessage.infoBackgroundColor    = UIColor(red: 44.0/255, green: 187.0/255, blue: 255.0/255, alpha: 0.90)
 ```
 
 ## Requirements

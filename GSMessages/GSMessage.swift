@@ -81,6 +81,8 @@ public class GSMessage {
     func show() {
 
         if view?.installedMessage != nil { return }
+        
+        updateFrames()
 
         view?.installedMessage = self
         view?.addSubview(message)
@@ -100,7 +102,7 @@ public class GSMessage {
             UIView.animateWithDuration(animationDuration) { self.message.transform = CGAffineTransformMakeTranslation(0, 0) }
         }
 
-        if autoHide { GCDAfter(autoHideDelay) { self.hide() } }
+        if autoHide { GS_GCDAfter(autoHideDelay) { self.hide() } }
 
     }
 
@@ -134,7 +136,8 @@ public class GSMessage {
 
     }
 
-    private weak var view: UIView?
+    private weak var view: UIView!
+    private weak var viewController: UIViewController?
     private var message: UIView!
     private var messageText: UILabel!
     private var animation: GSMessageAnimation = .Slide
@@ -183,45 +186,61 @@ public class GSMessage {
             }
         }
 
-        switch position {
-        case .Top:
-            if let inViewController = inViewController {
-                let navigation = inViewController.navigationController ?? (inViewController as? UINavigationController)
-                let navigationBarHidden = (navigation?.navigationBarHidden ?? true)
-                let navigationBarTranslucent = (navigation?.navigationBar.translucent ?? false)
-                let statusBarHidden = UIApplication.sharedApplication().statusBarHidden
-                if !navigationBarHidden && navigationBarTranslucent && !statusBarHidden { offsetY+=20 }
-                if !navigationBarHidden && navigationBarTranslucent { offsetY+=44; }
-                if (navigationBarHidden && !statusBarHidden) { offsetY+=20 }
-            }
-        case .Bottom:
-            y = view.bounds.size.height - height
-        }
-
         if inViewController is UITableViewController {
             if let lastWindow = UIApplication.sharedApplication().windows.last {
                 view = lastWindow as UIView
             }
         }
 
-        message = UIView(frame: CGRect(x: 0, y: y, width: view.bounds.size.width, height: messageHeight))
+        message = UIView()
         message.backgroundColor = backgroundColor
 
-        messageText = UILabel(frame: CGRect(x: textPadding, y: offsetY, width: message.bounds.size.width - textPadding * 2, height: height))
+        messageText = UILabel()
         messageText.text = text
         messageText.font = GSMessage.font
         messageText.textColor = textColor
         messageText.textAlignment = textAlignment
         messageText.numberOfLines = textNumberOfLines
         message.addSubview(messageText)
-
-        if hideOnTap { message.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(GSMessage.handleTap(_:)))) }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateFrames), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        
+        if hideOnTap { message.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))) }
 
         self.view = view
+        self.viewController = inViewController
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     @objc private func handleTap(tapGesture: UITapGestureRecognizer) {
         hide()
+    }
+    
+    @objc private func updateFrames() {
+        y       = 0
+        offsetY = 0
+        
+        switch position {
+        case .Top:
+            if let viewController = viewController {
+                let navigation = viewController.navigationController ?? (viewController as? UINavigationController)
+                let navigationBarHidden = (navigation?.navigationBarHidden ?? true)
+                let navigationBarTranslucent = (navigation?.navigationBar.translucent ?? false)
+                let navigationBarHeight = (navigation?.navigationBar.frame.size.height ?? 44)
+                let statusBarHidden = UIApplication.sharedApplication().statusBarHidden
+                if !navigationBarHidden && navigationBarTranslucent && !statusBarHidden { offsetY+=20 }
+                if !navigationBarHidden && navigationBarTranslucent { offsetY+=navigationBarHeight }
+                if (navigationBarHidden && !statusBarHidden) { offsetY+=20 }
+            }
+        case .Bottom:
+            y = view.bounds.size.height - height
+        }
+        
+        message.frame     = CGRect(x: 0, y: y, width: view.bounds.size.width, height: messageHeight)
+        messageText.frame = CGRect(x: textPadding, y: offsetY, width: message.bounds.size.width - textPadding * 2, height: height)
     }
 
     private func removeFromSuperview() {
@@ -248,7 +267,7 @@ extension UIView {
 private var installedMessageKey = ""
 private var uninstallMessageKey = ""
 
-private func GCDAfter(delay:Double, closure:()->()) {
+private func GS_GCDAfter(delay:Double, closure:()->()) {
     dispatch_after(
         dispatch_time(
             DISPATCH_TIME_NOW,
