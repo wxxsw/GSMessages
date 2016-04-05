@@ -1,8 +1,17 @@
-# GSMessages
+![GSMessages](https://github.com/wxxsw/GSMessages/blob/master/ScreenShots/logo.png)
+
+<p align="center">
+<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/language-swift2-f48041.svg?style=flat"></a>
+<a href="https://developer.apple.com/ios"><img src="https://img.shields.io/badge/platform-iOS%207%2B-blue.svg?style=flat"></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
+<a href="http://cocoadocs.org/docsets/GSMessages"><img src="https://img.shields.io/badge/Cocoapods-compatible-4BC51D.svg?style=flat"></a>
+<a href="https://github.com/wxxsw/GSMessages/blob/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat"></a>
+<a href="https://github.com/wxxsw/GSMessages/tree/1.2.2"><img src="https://img.shields.io/badge/release-1.2.2-blue.svg"></a>
+</p>
 
 ## Demo
 
-![](https://github.com/wxxsw/GSMessages/blob/master/demo.gif)
+![](https://github.com/wxxsw/GSMessages/blob/master/ScreenShots/demo.gif)
 
 ## Example
 
