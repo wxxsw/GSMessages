@@ -65,7 +65,7 @@ GSMessage.infoBackgroundColor    = UIColor(red: 44.0/255,  green: 187.0/255, blu
 ## Requirements
 
 - iOS 7.0+
-- Xcode 7.2 (Swift 2.0)
+- Xcode 7.3 (Swift 2.2)
 
 ## Installation
 
