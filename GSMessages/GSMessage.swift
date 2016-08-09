@@ -42,7 +42,7 @@ public enum GSMessageOption {
 extension UIViewController {
 
     public func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?) {
-        GSMessage.showMessageAddedTo(view, text: text, type: type, options: options, inViewController: self)
+        GSMessage.showMessageAddedTo(text, type: type, options: options, inView: view, inViewController: self)
     }
 
     public func hideMessage() {
@@ -54,7 +54,7 @@ extension UIViewController {
 extension UIView {
 
     public func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?) {
-        GSMessage.showMessageAddedTo(self, text: text, type: type, options: options, inViewController: nil)
+        GSMessage.showMessageAddedTo(text, type: type, options: options, inView: self, inViewController: nil)
     }
 
     public func hideMessage() {
@@ -71,35 +71,35 @@ public class GSMessage {
     public static var errorBackgroundColor   : UIColor = UIColor(red: 219.0/255, green: 36.0/255,  blue: 27.0/255,  alpha: 0.70)
     public static var infoBackgroundColor    : UIColor = UIColor(red: 44.0/255,  green: 187.0/255, blue: 255.0/255, alpha: 0.90)
 
-    class func showMessageAddedTo(view: UIView, text: String, type: GSMessageType, options: [GSMessageOption]?, inViewController: UIViewController?) {
-        if view.installedMessage != nil && view.uninstallMessage == nil { view.hideMessage() }
-        if view.installedMessage == nil {
-            GSMessage(view: view, text: text, type: type, options: options, inViewController: inViewController).show()
+    class func showMessageAddedTo(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?) {
+        if inView.installedMessage != nil && inView.uninstallMessage == nil { inView.hideMessage() }
+        if inView.installedMessage == nil {
+            GSMessage(text: text, type: type, options: options, inView: inView, inViewController: inViewController).show()
         }
     }
 
     func show() {
 
-        if view?.installedMessage != nil { return }
+        if inView?.installedMessage != nil { return }
         
         updateFrames()
 
-        view?.installedMessage = self
-        view?.addSubview(message)
+        inView?.installedMessage = self
+        inView?.addSubview(messageView)
 
         if animation == .Fade {
-            message.alpha = 0
-            UIView.animateWithDuration(animationDuration) { self.message.alpha = 1 }
+            messageView.alpha = 0
+            UIView.animateWithDuration(animationDuration) { self.messageView.alpha = 1 }
         }
 
         else if animation == .Slide && position == .Top {
-            message.transform = CGAffineTransformMakeTranslation(0, -messageHeight)
-            UIView.animateWithDuration(animationDuration) { self.message.transform = CGAffineTransformMakeTranslation(0, 0) }
+            messageView.transform = CGAffineTransformMakeTranslation(0, -messageHeight)
+            UIView.animateWithDuration(animationDuration) { self.messageView.transform = CGAffineTransformMakeTranslation(0, 0) }
         }
 
         else if animation == .Slide && position == .Bottom {
-            message.transform = CGAffineTransformMakeTranslation(0, height)
-            UIView.animateWithDuration(animationDuration) { self.message.transform = CGAffineTransformMakeTranslation(0, 0) }
+            messageView.transform = CGAffineTransformMakeTranslation(0, height)
+            UIView.animateWithDuration(animationDuration) { self.messageView.transform = CGAffineTransformMakeTranslation(0, 0) }
         }
 
         if autoHide { GS_GCDAfter(autoHideDelay) { self.hide() } }
@@ -108,58 +108,58 @@ public class GSMessage {
 
     func hide() {
 
-        if view?.installedMessage !== self || view?.uninstallMessage != nil { return }
+        if inView?.installedMessage !== self || inView?.uninstallMessage != nil { return }
 
-        view?.uninstallMessage = self
-        view?.installedMessage = nil
+        inView?.uninstallMessage = self
+        inView?.installedMessage = nil
 
         if animation == .Fade {
             UIView.animateWithDuration(self.animationDuration,
-                animations: { [weak self] in if let this = self { this.message.alpha = 0 } },
+                animations: { [weak self] in if let this = self { this.messageView.alpha = 0 } },
                 completion: { [weak self] finished in self?.removeFromSuperview() }
             )
         }
 
         else if animation == .Slide && position == .Top {
             UIView.animateWithDuration(self.animationDuration,
-                animations: { [weak self] in if let this = self { this.message.transform = CGAffineTransformMakeTranslation(0, -this.messageHeight) } },
+                animations: { [weak self] in if let this = self { this.messageView.transform = CGAffineTransformMakeTranslation(0, -this.messageHeight) } },
                 completion: { [weak self] finished in self?.removeFromSuperview() }
             )
         }
 
         else if animation == .Slide && position == .Bottom {
             UIView.animateWithDuration(self.animationDuration,
-                animations: { [weak self] in if let this = self { this.message.transform = CGAffineTransformMakeTranslation(0, this.height) } },
+                animations: { [weak self] in if let this = self { this.messageView.transform = CGAffineTransformMakeTranslation(0, this.height) } },
                 completion: { [weak self] finished in self?.removeFromSuperview() }
             )
         }
 
     }
 
-    private weak var view: UIView!
-    private weak var viewController: UIViewController?
-    private var message: UIView!
-    private var messageText: UILabel!
-    private var animation: GSMessageAnimation = .Slide
-    private var animationDuration: NSTimeInterval = 0.3
-    private var autoHide: Bool = true
-    private var autoHideDelay: Double = 3
-    private var backgroundColor: UIColor!
-    private var height: CGFloat = 44
-    private var hideOnTap: Bool = true
-    private var offsetY: CGFloat = 0
-    private var position: GSMessagePosition = .Top
-    private var textColor: UIColor = UIColor.whiteColor()
-    private var textPadding: CGFloat = 30
-    private var textAlignment: NSTextAlignment = .Center
-    private var textNumberOfLines: Int = 1
-    private var y: CGFloat = 0
+    private(set) weak var inView: UIView!
+    private(set) weak var inViewController: UIViewController?
+    private(set) var messageView: UIView!
+    private(set) var messageText: UILabel!
+    private(set) var animation: GSMessageAnimation = .Slide
+    private(set) var animationDuration: NSTimeInterval = 0.3
+    private(set) var autoHide: Bool = true
+    private(set) var autoHideDelay: Double = 3
+    private(set) var backgroundColor: UIColor!
+    private(set) var height: CGFloat = 44
+    private(set) var hideOnTap: Bool = true
+    private(set) var offsetY: CGFloat = 0
+    private(set) var position: GSMessagePosition = .Top
+    private(set) var textColor: UIColor = UIColor.whiteColor()
+    private(set) var textPadding: CGFloat = 30
+    private(set) var textAlignment: NSTextAlignment = .Center
+    private(set) var textNumberOfLines: Int = 1
+    private(set) var y: CGFloat = 0
 
     private var messageHeight: CGFloat { return offsetY + height }
 
-    private init(view: UIView, text: String, type: GSMessageType, options: [GSMessageOption]?, inViewController: UIViewController?) {
+    init(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?) {
 
-        var view = view
+        var inView = inView
         
         switch type {
         case .Success:  backgroundColor = GSMessage.successBackgroundColor
@@ -188,12 +188,12 @@ public class GSMessage {
 
         if inViewController is UITableViewController {
             if let lastWindow = UIApplication.sharedApplication().windows.last {
-                view = lastWindow as UIView
+                inView = lastWindow as UIView
             }
         }
 
-        message = UIView()
-        message.backgroundColor = backgroundColor
+        messageView = UIView()
+        messageView.backgroundColor = backgroundColor
 
         messageText = UILabel()
         messageText.text = text
@@ -201,14 +201,14 @@ public class GSMessage {
         messageText.textColor = textColor
         messageText.textAlignment = textAlignment
         messageText.numberOfLines = textNumberOfLines
-        message.addSubview(messageText)
+        messageView.addSubview(messageText)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateFrames), name: UIDeviceOrientationDidChangeNotification, object: nil)
         
-        if hideOnTap { message.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))) }
+        if hideOnTap { messageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))) }
 
-        self.view = view
-        self.viewController = inViewController
+        self.inView = inView
+        self.inViewController = inViewController
     }
     
     deinit {
@@ -225,7 +225,7 @@ public class GSMessage {
         
         switch position {
         case .Top:
-            if let viewController = viewController {
+            if let viewController = inViewController {
                 let navigation = viewController.navigationController ?? (viewController as? UINavigationController)
                 let navigationBarHidden = (navigation?.navigationBarHidden ?? true)
                 let navigationBarTranslucent = (navigation?.navigationBar.translucent ?? false)
@@ -236,16 +236,16 @@ public class GSMessage {
                 if (navigationBarHidden && !statusBarHidden) { offsetY+=20 }
             }
         case .Bottom:
-            y = view.bounds.size.height - height
+            y = inView.bounds.size.height - height
         }
         
-        message.frame     = CGRect(x: 0, y: y, width: view.bounds.size.width, height: messageHeight)
-        messageText.frame = CGRect(x: textPadding, y: offsetY, width: message.bounds.size.width - textPadding * 2, height: height)
+        messageView.frame     = CGRect(x: 0, y: y, width: inView.bounds.size.width, height: messageHeight)
+        messageText.frame = CGRect(x: textPadding, y: offsetY, width: messageView.bounds.size.width - textPadding * 2, height: height)
     }
 
     private func removeFromSuperview() {
-        message.removeFromSuperview()
-        view?.uninstallMessage = nil
+        messageView.removeFromSuperview()
+        inView?.uninstallMessage = nil
     }
 
 }
