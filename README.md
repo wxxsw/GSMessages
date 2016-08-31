@@ -43,7 +43,7 @@ self.showMessage("Some Text...", type: .Success, options: [.Animation(.Slide),
                                                            .AutoHide(true),
                                                            .AutoHideDelay(3.0),
                                                            .Height(44.0),
-                                                           .HideOnTap(true)
+                                                           .HideOnTap(true),
                                                            .Position(.Top),
                                                            .TextAlignment(.Center),
                                                            .TextColor(UIColor.whiteColor()),
