@@ -22,7 +22,7 @@ self.showMessage("Something success", type: .success)
 
 To display a notice on a view:
 ```Swift
-view.showMessage("Something success", type: .success, options: [.position(.bottom)])
+view.showMessage("Something success", type: .success)
 ```
 
 To hide a notification manually:
@@ -30,12 +30,12 @@ To hide a notification manually:
 self.hideMessage()
 ```
 
-##### Parameters (Current setting is default value):
+##### Options (Current setting is default value):
 
-- Type          : Success / Error / Warning / Info
-- Animation     : Slide / Fade
-- Position      : Top / Bottom
-- TextAlignment : Left / Center / Right
+- type          : success / error / warning / info
+- animation     : slide /fade
+- position      : top / bottom
+- textAlignment : left / center / right
 ```Swift
 self.showMessage("Some Text...", type: .success, options: [
     .animation(.slide),
@@ -68,12 +68,12 @@ GSMessage.infoBackgroundColor    = UIColor(red: 44.0/255,  green: 187.0/255, blu
 ### Master
 
 - iOS 8.0+
-- Xcode 8 (Swift 3)
+- Xcode 8.0 (Swift 3.0)
 
 ### [1.2.3](https://github.com/wxxsw/GSMessages/tree/1.2.3)
 
 - iOS 7.0+
-- Xcode 7 (Swift 2)
+- Xcode 7.3 (Swift 2.2)
 
 ## Installation
 
