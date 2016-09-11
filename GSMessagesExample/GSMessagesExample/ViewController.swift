@@ -12,73 +12,73 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var someView: UIView!
     
-    @IBAction func tapSuccess(sender: AnyObject) {
-        showMessage("Something success", type: .Success, options: nil)
+    @IBAction func tapSuccess(_ sender: AnyObject) {
+        showMessage("Something success", type: .success)
     }
     
-    @IBAction func tapError(sender: AnyObject) {
-        showMessage("Something failed", type: .Error, options: nil)
+    @IBAction func tapError(_ sender: AnyObject) {
+        showMessage("Something failed", type: .error)
     }
 
-    @IBAction func tapWarning(sender: AnyObject) {
-        showMessage("Some warning", type: .Warning, options: nil)
+    @IBAction func tapWarning(_ sender: AnyObject) {
+        showMessage("Some warning", type: .warning)
     }
     
-    @IBAction func tapInfo(sender: AnyObject) {
-        showMessage("Some message", type: .Info, options: nil)
+    @IBAction func tapInfo(_ sender: AnyObject) {
+        showMessage("Some message", type: .info)
     }
     
-    @IBAction func tapEndless(sender: AnyObject) {
-        showMessage("Endless", type: .Success, options: [.AutoHide(false), .HideOnTap(false)])
+    @IBAction func tapEndless(_ sender: AnyObject) {
+        showMessage("Endless", type: .success, options: [.autoHide(false), .hideOnTap(false)])
     }
     
-    @IBAction func tapDismiss(sender: AnyObject) {
+    @IBAction func tapDismiss(_ sender: AnyObject) {
         hideMessage()
         someView.hideMessage()
     }
     
-    @IBAction func tapFade(sender: AnyObject) {
-        showMessage("Fade", type: .Success, options: [.Animation(.Fade)])
+    @IBAction func tapFade(_ sender: AnyObject) {
+        showMessage("Fade", type: .success, options: [.animation(.fade)])
     }
     
-    @IBAction func tapLong(sender: AnyObject) {
-        showMessage("Long", type: .Success, options: [.AutoHideDelay(10)])
+    @IBAction func tapLong(_ sender: AnyObject) {
+        showMessage("Long", type: .success, options: [.autoHideDelay(10)])
     }
     
-    @IBAction func tapInView(sender: AnyObject) {
-        someView.showMessage("In View", type: .Success, options: nil)
+    @IBAction func tapInView(_ sender: AnyObject) {
+        someView.showMessage("In View", type: .success, options: nil)
     }
     
-    @IBAction func tapHeight(sender: AnyObject) {
-        showMessage("Height", type: .Success, options: [.Height(100)])
+    @IBAction func tapHeight(_ sender: AnyObject) {
+        showMessage("Height", type: .success, options: [.height(100)])
     }
     
-    @IBAction func tapLeft(sender: AnyObject) {
-        showMessage("Left", type: .Success, options: [.TextAlignment(.Left)])
+    @IBAction func tapLeft(_ sender: AnyObject) {
+        showMessage("Left", type: .success, options: [.textAlignment(.left)])
     }
     
-    @IBAction func tapCenter(sender: AnyObject) {
-        showMessage("Center", type: .Success, options: [.TextAlignment(.Center)])
+    @IBAction func tapCenter(_ sender: AnyObject) {
+        showMessage("Center", type: .success, options: [.textAlignment(.center)])
     }
     
-    @IBAction func tapRight(sender: AnyObject) {
-        showMessage("Right", type: .Success, options: [.TextAlignment(.Right)])
+    @IBAction func tapRight(_ sender: AnyObject) {
+        showMessage("Right", type: .success, options: [.textAlignment(.right)])
     }
     
-    @IBAction func tapVeryLong(sender: AnyObject) {
-        showMessage("This will be a very long message that someone wanna show in a high message", type: .Success, options: [.Height(80), .TextNumberOfLines(2)])
+    @IBAction func tapVeryLong(_ sender: AnyObject) {
+        showMessage("This will be a very long message that someone wanna show in a high message", type: .success, options: [.textNumberOfLines(2), .height(80.0)])
     }
     
-    @IBAction func tapBottom(sender: AnyObject) {
-        showMessage("Bottom", type: .Success, options: [.Position(.Bottom)])
+    @IBAction func tapBottom(_ sender: AnyObject) {
+        showMessage("Bottom", type: .success, options: [.position(.bottom)])
     }
     
-    @IBAction func tapToggleNavBarTranslucent(sender: AnyObject) {
-        navigationController!.navigationBar.translucent = !navigationController!.navigationBar.translucent
+    @IBAction func tapToggleNavBarTranslucent(_ sender: AnyObject) {
+        navigationController!.navigationBar.isTranslucent = !navigationController!.navigationBar.isTranslucent
     }
     
-    @IBAction func tapToggleNavBarHidden(sender: AnyObject) {
-        navigationController!.setNavigationBarHidden(!navigationController!.navigationBarHidden, animated: true)
+    @IBAction func tapToggleNavBarHidden(_ sender: AnyObject) {
+        navigationController!.setNavigationBarHidden(!navigationController!.isNavigationBarHidden, animated: true)
     }
     
 }
