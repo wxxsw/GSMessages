@@ -220,6 +220,7 @@ public class GSMessage {
     }
     
     @objc fileprivate func updateFrames() {
+        guard let inView = inView else { return }
         y       = 0
         offsetY = 0
         
