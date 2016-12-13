@@ -241,7 +241,7 @@ public class GSMessage {
                 if !navigationBarHidden && navigationBarTranslucent { offsetY+=navigationBarHeight }
                 if (navigationBarHidden && !statusBarHidden) { offsetY+=20 }
             }
-            y = 0 - inView.frame.origin.y
+            y = max(0 - inView.frame.origin.y, 0)
         case .bottom:
             y = inView.bounds.size.height - height
         }
