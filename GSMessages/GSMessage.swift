@@ -251,8 +251,10 @@ public class GSMessage {
     }
     
     @objc fileprivate func keyboardWillShow(notification: NSNotification) {
+        guard let inView = self.inView else { return }
+        
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.messageView.frame.origin.y == 0 {
+            if self.messageView.frame.origin.y == 0 && inView.frame.origin.y < 0 {
                 self.messageView.frame.origin.y += keyboardSize.height
             }
         }
