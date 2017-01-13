@@ -236,16 +236,17 @@ public class GSMessage {
         switch position {
         case .top:
             if let viewController = inViewController {
-                let navigation = viewController.navigationController ?? (viewController as? UINavigationController)
-                let navigationBarHidden = (navigation?.isNavigationBarHidden ?? true)
-                let navigationBarTranslucent = (navigation?.navigationBar.isTranslucent ?? false)
-                let navigationBarHeight = (navigation?.navigationBar.frame.size.height ?? 44)
-                let statusBarHidden = UIApplication.shared.isStatusBarHidden
-                if !navigationBarHidden && navigationBarTranslucent && !statusBarHidden { offsetY+=20 }
-                if !navigationBarHidden && navigationBarTranslucent { offsetY+=navigationBarHeight }
-                if (navigationBarHidden && !statusBarHidden) { offsetY+=20 }
                 if viewController.edgesForExtendedLayout == [] {
                     offsetY = 0
+                } else {
+                    let navigation = viewController.navigationController ?? (viewController as? UINavigationController)
+                    let navigationBarHidden = (navigation?.isNavigationBarHidden ?? true)
+                    let navigationBarTranslucent = (navigation?.navigationBar.isTranslucent ?? false)
+                    let navigationBarHeight = (navigation?.navigationBar.frame.size.height ?? 44)
+                    let statusBarHidden = UIApplication.shared.isStatusBarHidden
+                    if !navigationBarHidden && navigationBarTranslucent && !statusBarHidden { offsetY += 20 }
+                    if !navigationBarHidden && navigationBarTranslucent { offsetY += navigationBarHeight }
+                    if (navigationBarHidden && !statusBarHidden) { offsetY += 20 }
                 }
             }
             y = max(0 - inView.frame.origin.y, 0)
