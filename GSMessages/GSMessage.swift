@@ -244,6 +244,9 @@ public class GSMessage {
                 if !navigationBarHidden && navigationBarTranslucent && !statusBarHidden { offsetY+=20 }
                 if !navigationBarHidden && navigationBarTranslucent { offsetY+=navigationBarHeight }
                 if (navigationBarHidden && !statusBarHidden) { offsetY+=20 }
+                if viewController.edgesForExtendedLayout == [] {
+                    offsetY = 0
+                }
             }
             y = max(0 - inView.frame.origin.y, 0)
         case .bottom:
