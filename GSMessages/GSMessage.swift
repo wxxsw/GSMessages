@@ -71,14 +71,14 @@ public class GSMessage {
     public static var errorBackgroundColor   : UIColor = UIColor(red: 219.0/255, green: 36.0/255,  blue: 27.0/255,  alpha: 0.70)
     public static var infoBackgroundColor    : UIColor = UIColor(red: 44.0/255,  green: 187.0/255, blue: 255.0/255, alpha: 0.90)
 
-    class func showMessageAddedTo(_ text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?) {
+    public class func showMessageAddedTo(_ text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?) {
         if inView.installedMessage != nil && inView.uninstallMessage == nil { inView.hideMessage() }
         if inView.installedMessage == nil {
             GSMessage(text: text, type: type, options: options, inView: inView, inViewController: inViewController).show()
         }
     }
 
-    func show() {
+    public func show() {
 
         if inView?.installedMessage != nil { return }
 
@@ -106,7 +106,7 @@ public class GSMessage {
 
     }
 
-    func hide() {
+    public func hide() {
 
         if inView?.installedMessage !== self || inView?.uninstallMessage != nil { return }
 
@@ -136,28 +136,28 @@ public class GSMessage {
 
     }
 
-    fileprivate(set) weak var inView: UIView!
-    fileprivate(set) weak var inViewController: UIViewController?
-    fileprivate(set) var messageView: UIView!
-    fileprivate(set) var messageText: UILabel!
-    fileprivate(set) var animation: GSMessageAnimation = .slide
-    fileprivate(set) var animationDuration: TimeInterval = 0.3
-    fileprivate(set) var autoHide: Bool = true
-    fileprivate(set) var autoHideDelay: Double = 3
-    fileprivate(set) var backgroundColor: UIColor!
-    fileprivate(set) var height: CGFloat = 44
-    fileprivate(set) var hideOnTap: Bool = true
-    fileprivate(set) var offsetY: CGFloat = 0
-    fileprivate(set) var position: GSMessagePosition = .top
-    fileprivate(set) var textColor: UIColor = UIColor.white
-    fileprivate(set) var textPadding: CGFloat = 30
-    fileprivate(set) var textAlignment: NSTextAlignment = .center
-    fileprivate(set) var textNumberOfLines: Int = 1
-    fileprivate(set) var y: CGFloat = 0
+    public fileprivate(set) weak var inView: UIView!
+    public fileprivate(set) weak var inViewController: UIViewController?
+    public fileprivate(set) var messageView: UIView!
+    public fileprivate(set) var messageText: UILabel!
+    public fileprivate(set) var animation: GSMessageAnimation = .slide
+    public fileprivate(set) var animationDuration: TimeInterval = 0.3
+    public fileprivate(set) var autoHide: Bool = true
+    public fileprivate(set) var autoHideDelay: Double = 3
+    public fileprivate(set) var backgroundColor: UIColor!
+    public fileprivate(set) var height: CGFloat = 44
+    public fileprivate(set) var hideOnTap: Bool = true
+    public fileprivate(set) var offsetY: CGFloat = 0
+    public fileprivate(set) var position: GSMessagePosition = .top
+    public fileprivate(set) var textColor: UIColor = UIColor.white
+    public fileprivate(set) var textPadding: CGFloat = 30
+    public fileprivate(set) var textAlignment: NSTextAlignment = .center
+    public fileprivate(set) var textNumberOfLines: Int = 1
+    public fileprivate(set) var y: CGFloat = 0
 
-    fileprivate var messageHeight: CGFloat { return offsetY + height }
+    public var messageHeight: CGFloat { return offsetY + height }
 
-    init(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?) {
+    public init(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?) {
 
         var inView = inView
         
