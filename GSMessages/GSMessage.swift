@@ -71,14 +71,14 @@ public class GSMessage {
     public static var errorBackgroundColor   : UIColor = UIColor(red: 219.0/255, green: 36.0/255,  blue: 27.0/255,  alpha: 0.70)
     public static var infoBackgroundColor    : UIColor = UIColor(red: 44.0/255,  green: 187.0/255, blue: 255.0/255, alpha: 0.90)
 
-    class func showMessageAddedTo(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?) {
+    public class func showMessageAddedTo(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?) {
         if inView.installedMessage != nil && inView.uninstallMessage == nil { inView.hideMessage() }
         if inView.installedMessage == nil {
             GSMessage(text: text, type: type, options: options, inView: inView, inViewController: inViewController).show()
         }
     }
 
-    func show() {
+    public func show() {
 
         if inView?.installedMessage != nil { return }
         
@@ -106,7 +106,7 @@ public class GSMessage {
 
     }
 
-    func hide() {
+    public func hide() {
 
         if inView?.installedMessage !== self || inView?.uninstallMessage != nil { return }
 
@@ -136,28 +136,28 @@ public class GSMessage {
 
     }
 
-    private(set) weak var inView: UIView!
-    private(set) weak var inViewController: UIViewController?
-    private(set) var messageView: UIView!
-    private(set) var messageText: UILabel!
-    private(set) var animation: GSMessageAnimation = .Slide
-    private(set) var animationDuration: NSTimeInterval = 0.3
-    private(set) var autoHide: Bool = true
-    private(set) var autoHideDelay: Double = 3
-    private(set) var backgroundColor: UIColor!
-    private(set) var height: CGFloat = 44
-    private(set) var hideOnTap: Bool = true
-    private(set) var offsetY: CGFloat = 0
-    private(set) var position: GSMessagePosition = .Top
-    private(set) var textColor: UIColor = UIColor.whiteColor()
-    private(set) var textPadding: CGFloat = 30
-    private(set) var textAlignment: NSTextAlignment = .Center
-    private(set) var textNumberOfLines: Int = 1
-    private(set) var y: CGFloat = 0
+    public private(set) weak var inView: UIView!
+    public private(set) weak var inViewController: UIViewController?
+    public private(set) var messageView: UIView!
+    public private(set) var messageText: UILabel!
+    public private(set) var animation: GSMessageAnimation = .Slide
+    public private(set) var animationDuration: NSTimeInterval = 0.3
+    public private(set) var autoHide: Bool = true
+    public private(set) var autoHideDelay: Double = 3
+    public private(set) var backgroundColor: UIColor!
+    public private(set) var height: CGFloat = 44
+    public private(set) var hideOnTap: Bool = true
+    public private(set) var offsetY: CGFloat = 0
+    public private(set) var position: GSMessagePosition = .Top
+    public private(set) var textColor: UIColor = UIColor.whiteColor()
+    public private(set) var textPadding: CGFloat = 30
+    public private(set) var textAlignment: NSTextAlignment = .Center
+    public private(set) var textNumberOfLines: Int = 1
+    public private(set) var y: CGFloat = 0
 
-    private var messageHeight: CGFloat { return offsetY + height }
+    public var messageHeight: CGFloat { return offsetY + height }
 
-    init(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?) {
+    public init(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?) {
 
         var inView = inView
         
