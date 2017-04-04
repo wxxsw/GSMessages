@@ -69,12 +69,12 @@ GSMessage.infoBackgroundColor    = UIColor(red: 44.0/255,  green: 187.0/255, blu
 ### Master
 
 - iOS 8.0+
-- Xcode 8.0 (Swift 3.0)
+- Xcode 8.0+ (Swift 3.x)
 
-### [1.2.3](https://github.com/wxxsw/GSMessages/tree/1.2.3)
+### [1.2.4](https://github.com/wxxsw/GSMessages/tree/1.2.4)
 
 - iOS 7.0+
-- Xcode 7.3 (Swift 2.2)
+- Xcode 7.3+ (Swift 2.x)
 
 ## Installation
 
