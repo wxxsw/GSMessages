@@ -41,12 +41,12 @@ class ViewController: UIViewController {
         showMessage("Fade", type: .success, options: [.animation(.fade)])
     }
     
-    @IBAction func tapLong(_ sender: AnyObject) {
-        showMessage("Long", type: .success, options: [.autoHideDelay(10)])
+    @IBAction func tapLongTime(_ sender: AnyObject) {
+        showMessage("Long Time", type: .success, options: [.autoHideDelay(10)])
     }
     
     @IBAction func tapInView(_ sender: AnyObject) {
-        someView.showMessage("In View", type: .success, options: nil)
+        someView.showMessage("In View", type: .success)
     }
     
     @IBAction func tapHeight(_ sender: AnyObject) {
@@ -65,8 +65,8 @@ class ViewController: UIViewController {
         showMessage("Right", type: .success, options: [.textAlignment(.right)])
     }
     
-    @IBAction func tapVeryLong(_ sender: AnyObject) {
-        showMessage("This will be a very long message that someone wanna show in a high message", type: .success, options: [.textNumberOfLines(2), .height(80.0)])
+    @IBAction func tapLongText(_ sender: AnyObject) {
+        showMessage("This will be a very long message that someone wanna show in a high message", type: .success, options: [.textNumberOfLines(0)])
     }
     
     @IBAction func tapBottom(_ sender: AnyObject) {

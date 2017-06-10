@@ -13,6 +13,7 @@
 		1885CFD21B4F6FA100F49F2A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1885CFD11B4F6FA100F49F2A /* Images.xcassets */; };
 		1885CFD51B4F6FA100F49F2A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1885CFD31B4F6FA100F49F2A /* LaunchScreen.xib */; };
 		1885CFEC1B4F70DD00F49F2A /* GSMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885CFEB1B4F70DD00F49F2A /* GSMessage.swift */; };
+		A3031DE71EEBAE2200599066 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3031DE61EEBAE2200599066 /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		1885CFD11B4F6FA100F49F2A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1885CFD41B4F6FA100F49F2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1885CFEB1B4F70DD00F49F2A /* GSMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSMessage.swift; sourceTree = "<group>"; };
+		A3031DE61EEBAE2200599066 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			children = (
 				1885CFCA1B4F6FA100F49F2A /* AppDelegate.swift */,
 				1885CFCC1B4F6FA100F49F2A /* ViewController.swift */,
+				A3031DE61EEBAE2200599066 /* TableViewController.swift */,
 				1885CFCE1B4F6FA100F49F2A /* Main.storyboard */,
 				1885CFD11B4F6FA100F49F2A /* Images.xcassets */,
 				1885CFD31B4F6FA100F49F2A /* LaunchScreen.xib */,
@@ -161,6 +164,7 @@
 				1885CFCD1B4F6FA100F49F2A /* ViewController.swift in Sources */,
 				1885CFCB1B4F6FA100F49F2A /* AppDelegate.swift in Sources */,
 				1885CFEC1B4F70DD00F49F2A /* GSMessage.swift in Sources */,
+				A3031DE71EEBAE2200599066 /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
