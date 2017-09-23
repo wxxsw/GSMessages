@@ -134,7 +134,7 @@ public class GSMessage: NSObject {
 
         else if animation == .slide && position == .bottom {
             UIView.animate(withDuration: self.animationDuration,
-                animations: { [weak self] in if let this = self { this.messageView.transform = CGAffineTransform(translationX: 0, y: this.height) } },
+                animations: { [weak self] in if let this = self { this.messageView.transform = CGAffineTransform(translationX: 0, y: this.messageHeight) } },
                 completion: { [weak self] finished in self?.removeFromSuperview() }
             )
         }
@@ -165,7 +165,7 @@ public class GSMessage: NSObject {
     
     fileprivate var observingTableViewController: UITableViewController?
 
-    public var messageHeight: CGFloat { return offsetY + height }
+    public var messageHeight: CGFloat { return abs(offsetY) + height }
 
     public init(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?) {
         
@@ -212,7 +212,7 @@ public class GSMessage: NSObject {
         messageView.addSubview(messageText)
         
         if textNumberOfLines == 0 {
-            height = max(text.boundingRect(with: CGSize(width: inView.frame.size.width - textPadding * 2, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: GSMessage.font], context: nil).height + (height - " ".boundingRect(with: CGSize(width: inView.frame.size.width, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: GSMessage.font], context: nil).height), height)
+          height = max(text.boundingRect(with: CGSize(width: inView.frame.size.width - textPadding * 2, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: GSMessage.font], context: nil).height + (height - " ".boundingRect(with: CGSize(width: inView.frame.size.width, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: GSMessage.font], context: nil).height), height)
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateFrames), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
@@ -248,29 +248,41 @@ public class GSMessage: NSObject {
         switch position {
         case .top:
             if let vc = inViewController {
-                if vc.edgesForExtendedLayout == [] {
-                    offsetY = 0
+                if #available(iOS 11.0, *) {
+                    offsetY = vc.view.safeAreaInsets.top
                 } else {
-                    let nav = vc.navigationController ?? (vc as? UINavigationController)
-                    let isNavBarHidden = (nav?.isNavigationBarHidden ?? true)
-                    let isNavBarTranslucent = (nav?.navigationBar.isTranslucent ?? false)
-                    let navBarHeight = (nav?.navigationBar.frame.size.height ?? 44)
-                    let isStatusBarHidden = UIApplication.shared.isStatusBarHidden
-                    if !isNavBarHidden && isNavBarTranslucent && !isStatusBarHidden { offsetY += 20 }
-                    if !isNavBarHidden && isNavBarTranslucent { offsetY += navBarHeight }
-                    if (isNavBarHidden && !isStatusBarHidden) { offsetY += 20 }
+                    if vc.edgesForExtendedLayout == [] {
+                        offsetY = 0
+                    } else {
+                        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+                        let nav = vc.navigationController ?? (vc as? UINavigationController)
+                        let isNavBarHidden = (nav?.isNavigationBarHidden ?? true)
+                        let isNavBarTranslucent = (nav?.navigationBar.isTranslucent ?? false)
+                        let navBarHeight = (nav?.navigationBar.frame.size.height ?? 44)
+                        let isStatusBarHidden = UIApplication.shared.isStatusBarHidden
+                        if !isNavBarHidden && isNavBarTranslucent && !isStatusBarHidden { offsetY += statusBarHeight }
+                        if !isNavBarHidden && isNavBarTranslucent { offsetY += navBarHeight }
+                        if (isNavBarHidden && !isStatusBarHidden) { offsetY += statusBarHeight }
+                    }
                 }
             }
             y = max(0 - inView.frame.origin.y, 0)
         case .bottom:
             y = inView.bounds.size.height - height
+            
+            if let vc = inViewController {
+                if #available(iOS 11.0, *) {
+                    offsetY = -vc.view.safeAreaInsets.bottom
+                    y = inView.bounds.size.height - height + offsetY
+                }
+            }
         }
         
         let contentOffsetY = observingTableViewController?.tableView.contentOffset.y ?? 0
         
         containerView.frame = CGRect(x: 0, y: y + contentOffsetY, width: inView.bounds.size.width, height: messageHeight)
         messageView.frame = containerView.bounds
-        messageText.frame = CGRect(x: textPadding, y: offsetY, width: messageView.bounds.size.width - textPadding * 2, height: height)
+        messageText.frame = CGRect(x: textPadding, y: max(0, offsetY), width: messageView.bounds.size.width - textPadding * 2, height: height)
     }
     
     fileprivate func removeFromSuperview() {

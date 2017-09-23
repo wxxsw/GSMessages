@@ -6,7 +6,7 @@
 <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
 <a href="http://cocoadocs.org/docsets/GSMessages"><img src="https://img.shields.io/badge/Cocoapods-compatible-4BC51D.svg?style=flat"></a>
 <a href="https://github.com/wxxsw/GSMessages/blob/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat"></a>
-<a href="https://github.com/wxxsw/GSMessages/tree/1.3.5"><img src="https://img.shields.io/badge/release-1.3.5-blue.svg"></a>
+<a href="https://github.com/wxxsw/GSMessages/tree/1.4.0"><img src="https://img.shields.io/badge/release-1.4.0-blue.svg"></a>
 </p>
 
 ## Demo
@@ -67,6 +67,11 @@ GSMessage.infoBackgroundColor    = UIColor(red: 44.0/255,  green: 187.0/255, blu
 ## Requirements
 
 ### Master
+
+- iOS 8.0+
+- Xcode 9.0+ (Swift 4.x)
+
+### [1.3.5](https://github.com/wxxsw/GSMessages/tree/1.3.5)
 
 - iOS 8.0+
 - Xcode 8.0+ (Swift 3.x)
