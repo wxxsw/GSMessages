@@ -24,7 +24,7 @@ class TableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 16
+        return 22
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,13 +41,19 @@ class TableViewController: UITableViewController {
         case 6:  cell.textLabel?.text = "Fade"
         case 7:  cell.textLabel?.text = "Long Time"
         case 8:  cell.textLabel?.text = "Height"
-        case 9:  cell.textLabel?.text = "Left"
-        case 10: cell.textLabel?.text = "Center"
-        case 11: cell.textLabel?.text = "Right"
-        case 12: cell.textLabel?.text = "Long Text"
-        case 13: cell.textLabel?.text = "Bottom"
-        case 14: cell.textLabel?.text = "Toggle NavBar Translucent"
-        case 15: cell.textLabel?.text = "Toggle NavBar Hidden"
+        case 9:  cell.textLabel?.text = "TopLeft"
+        case 10: cell.textLabel?.text = "TopCenter"
+        case 11: cell.textLabel?.text = "TopRight"
+        case 12: cell.textLabel?.text = "Left"
+        case 13: cell.textLabel?.text = "Center"
+        case 14: cell.textLabel?.text = "Right"
+        case 15: cell.textLabel?.text = "BottomLeft"
+        case 16: cell.textLabel?.text = "BottomCenter"
+        case 17: cell.textLabel?.text = "BottomRight"
+        case 18: cell.textLabel?.text = "Long Text"
+        case 19: cell.textLabel?.text = "Bottom"
+        case 20: cell.textLabel?.text = "Toggle NavBar Translucent"
+        case 21: cell.textLabel?.text = "Toggle NavBar Hidden"
         default: break
         }
 
@@ -75,19 +81,31 @@ class TableViewController: UITableViewController {
         case 8:
             showMessage("Height", type: .success, options: [.height(100)])
         case 9:
-            showMessage("Left", type: .success, options: [.textAlignment(.left)])
+            showMessage("TopLeft", type: .success, options: [.textAlignment(.topLeft), .height(60)])
         case 10:
-            showMessage("Center", type: .success, options: [.textAlignment(.center)])
+            showMessage("TopCenter", type: .success, options: [.textAlignment(.topCenter), .height(60)])
         case 11:
-            showMessage("Right", type: .success, options: [.textAlignment(.right)])
+            showMessage("TopRight", type: .success, options: [.textAlignment(.topRight), .height(60)])
         case 12:
-            showMessage("This will be a very long message that someone wanna show in a high message", type: .success, options: [.textNumberOfLines(0)])
+            showMessage("Left", type: .success, options: [.textAlignment(.left), .height(60)])
         case 13:
-            showMessage("Bottom", type: .success, options: [.position(.bottom)])
+            showMessage("Center", type: .success, options: [.textAlignment(.center), .height(60)])
         case 14:
-            hideMessage(animated: false)
-            navigationController!.navigationBar.isTranslucent = !navigationController!.navigationBar.isTranslucent
+            showMessage("Right", type: .success, options: [.textAlignment(.right), .height(60)])
         case 15:
+            showMessage("BottomLeft", type: .success, options: [.textAlignment(.bottomLeft), .height(60)])
+        case 16:
+            showMessage("BottomCenter", type: .success, options: [.textAlignment(.bottomCenter), .height(60)])
+        case 17:
+            showMessage("BottomRight", type: .success, options: [.textAlignment(.bottomRight), .height(60)])
+        case 18:
+            showMessage("This will be a very long message that someone wanna show in a high message", type: .success, options: [.textNumberOfLines(0)])
+        case 19:
+            showMessage("Bottom", type: .success, options: [.position(.bottom)])
+        case 20:
+            hideMessage(animated: false)
+            navigationController!.navigationBar.isTranslucent = navigationController!.navigationBar.isTranslucent
+        case 21:
             hideMessage(animated: false)
             navigationController!.setNavigationBarHidden(!navigationController!.isNavigationBarHidden, animated: true)
         default:

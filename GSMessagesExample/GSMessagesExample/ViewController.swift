@@ -53,16 +53,40 @@ class ViewController: UIViewController {
         showMessage("Height", type: .success, options: [.height(100)])
     }
     
+    @IBAction func tapTopLeft(_ sender: AnyObject) {
+        showMessage("TopLeft", type: .success, options: [.textAlignment(.topLeft), .height(60)])
+    }
+    
+    @IBAction func tapTopCenter(_ sender: AnyObject) {
+        showMessage("TopCenter", type: .success, options: [.textAlignment(.topCenter), .height(60)])
+    }
+    
+    @IBAction func tapTopRight(_ sender: AnyObject) {
+        showMessage("TopRight", type: .success, options: [.textAlignment(.topRight), .height(60)])
+    }
+    
     @IBAction func tapLeft(_ sender: AnyObject) {
-        showMessage("Left", type: .success, options: [.textAlignment(.left)])
+        showMessage("Left", type: .success, options: [.textAlignment(.left), .height(60)])
     }
     
     @IBAction func tapCenter(_ sender: AnyObject) {
-        showMessage("Center", type: .success, options: [.textAlignment(.center)])
+        showMessage("Center", type: .success, options: [.textAlignment(.center), .height(60)])
     }
     
     @IBAction func tapRight(_ sender: AnyObject) {
-        showMessage("Right", type: .success, options: [.textAlignment(.right)])
+        showMessage("Right", type: .success, options: [.textAlignment(.right), .height(60)])
+    }
+    
+    @IBAction func tapBottomLeft(_ sender: AnyObject) {
+        showMessage("BottomLeft", type: .success, options: [.textAlignment(.bottomLeft), .height(60)])
+    }
+    
+    @IBAction func tapBottomCenter(_ sender: AnyObject) {
+        showMessage("BottomCenter", type: .success, options: [.textAlignment(.bottomCenter), .height(60)])
+    }
+    
+    @IBAction func tapBottomRight(_ sender: AnyObject) {
+        showMessage("BottomRight", type: .success, options: [.textAlignment(.bottomRight), .height(60)])
     }
     
     @IBAction func tapLongText(_ sender: AnyObject) {
