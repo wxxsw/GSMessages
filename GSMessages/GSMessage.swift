@@ -42,22 +42,24 @@ public enum GSMessageOption {
     case animationDuration(TimeInterval)
     case autoHide(Bool)
     case autoHideDelay(Double) // Second
-    case height(Double)
+    case cornerRadius(CGFloat)
+    case height(CGFloat)
     case hideOnTap(Bool)
+    case margin(UIEdgeInsets)
     case padding(UIEdgeInsets)
     case position(GSMessagePosition)
-    case textColor(UIColor)
     case textAlignment(GSMessageTextAlignment)
+    case textColor(UIColor)
     case textNumberOfLines(Int)
 }
 
 extension UIViewController {
 
-    public func showMessage(_ text: String, type: GSMessageType, options: [GSMessageOption]? = nil) {
+    open func showMessage(_ text: String, type: GSMessageType, options: [GSMessageOption]? = nil) {
         GSMessage.showMessageAddedTo(text, type: type, options: options, inView: view, inViewController: self)
     }
 
-    public func hideMessage(animated: Bool = true) {
+    open func hideMessage(animated: Bool = true) {
         view.hideMessage(animated: animated)
     }
 
@@ -65,11 +67,11 @@ extension UIViewController {
 
 extension UIView {
 
-    public func showMessage(_ text: String, type: GSMessageType, options: [GSMessageOption]? = nil) {
+    open func showMessage(_ text: String, type: GSMessageType, options: [GSMessageOption]? = nil) {
         GSMessage.showMessageAddedTo(text, type: type, options: options, inView: self, inViewController: nil)
     }
 
-    public func hideMessage(animated: Bool = true) {
+    open func hideMessage(animated: Bool = true) {
         installedMessage?.hide(animated: animated)
     }
 
@@ -105,12 +107,12 @@ public class GSMessage: NSObject {
         }
 
         else if animation == .slide && position == .top {
-            messageView.transform = CGAffineTransform(translationX: 0, y: -messageHeight)
+            messageView.transform = CGAffineTransform(translationX: 0, y: -messageHeight + -margin.top)
             UIView.animate(withDuration: animationDuration, animations: { self.messageView.transform = CGAffineTransform(translationX: 0, y: 0) }) 
         }
 
         else if animation == .slide && position == .bottom {
-            messageView.transform = CGAffineTransform(translationX: 0, y: height)
+            messageView.transform = CGAffineTransform(translationX: 0, y: height + margin.bottom)
             UIView.animate(withDuration: animationDuration, animations: { self.messageView.transform = CGAffineTransform(translationX: 0, y: 0) }) 
         }
 
@@ -139,14 +141,14 @@ public class GSMessage: NSObject {
 
         else if animation == .slide && position == .top {
             UIView.animate(withDuration: self.animationDuration,
-                animations: { [weak self] in if let this = self { this.messageView.transform = CGAffineTransform(translationX: 0, y: -this.messageHeight) } },
+                animations: { [weak self] in if let this = self { this.messageView.transform = CGAffineTransform(translationX: 0, y: -this.messageHeight + -this.margin.top) } },
                 completion: { [weak self] finished in self?.removeFromSuperview() }
             )
         }
 
         else if animation == .slide && position == .bottom {
             UIView.animate(withDuration: self.animationDuration,
-                animations: { [weak self] in if let this = self { this.messageView.transform = CGAffineTransform(translationX: 0, y: this.messageHeight) } },
+                animations: { [weak self] in if let this = self { this.messageView.transform = CGAffineTransform(translationX: 0, y: this.messageHeight + this.margin.bottom) } },
                 completion: { [weak self] finished in self?.removeFromSuperview() }
             )
         }
@@ -164,31 +166,32 @@ public class GSMessage: NSObject {
     public private(set) var animationDuration: TimeInterval = 0.3
     public private(set) var autoHide: Bool = true
     public private(set) var autoHideDelay: Double = 3
-    public private(set) var backgroundColor: UIColor!
+    public private(set) var cornerRadius: CGFloat = 0
     public private(set) var height: CGFloat = 44
     public private(set) var hideOnTap: Bool = true
-    public private(set) var padding: UIEdgeInsets = UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 30)
+    public private(set) var margin: UIEdgeInsets = .zero
+    public private(set) var padding: UIEdgeInsets = .init(top: 10, left: 30, bottom: 10, right: 30)
     public private(set) var position: GSMessagePosition = .top
-    public private(set) var textColor: UIColor = UIColor.white
+    public private(set) var textColor: UIColor = .white
     public private(set) var textAlignment: GSMessageTextAlignment = .center
     public private(set) var textNumberOfLines: Int = 1
     
-    public private(set) var y: CGFloat = 0
-    public private(set) var offsetY: CGFloat = 0
+    public var messageWidth:  CGFloat {
+        return inView.frame.width - margin.horizontal
+    }
+    public var messageHeight: CGFloat {
+        return abs(offsetY) + height
+    }
     
+    fileprivate var y: CGFloat = 0
+    fileprivate var offsetY: CGFloat = 0
     fileprivate var observingTableVC: UITableViewController?
-
-    public var messageWidth:  CGFloat { return inView.frame.width }
-    public var messageHeight: CGFloat { return abs(offsetY) + height }
+    
+    fileprivate var textWidth: CGFloat {
+        return messageWidth - padding.horizontal
+    }
 
     public init(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?) {
-        
-        switch type {
-        case .success:  backgroundColor = GSMessage.successBackgroundColor
-        case .warning:  backgroundColor = GSMessage.warningBackgroundColor
-        case .error:    backgroundColor = GSMessage.errorBackgroundColor
-        case .info:     backgroundColor = GSMessage.infoBackgroundColor
-        }
 
         for option in options ?? [] {
             switch (option) {
@@ -196,13 +199,15 @@ public class GSMessage: NSObject {
             case let .animationDuration(value): animationDuration = value
             case let .autoHide(value): autoHide = value
             case let .autoHideDelay(value): autoHideDelay = value
-            case let .height(value): height = CGFloat(value)
+            case let .cornerRadius(value): cornerRadius = value
+            case let .height(value): height = value
             case let .hideOnTap(value): hideOnTap = value
+            case let .margin(value): margin = value
+            case let .padding(value): padding = value
             case let .position(value): position = value
             case let .textColor(value): textColor = value
             case let .textAlignment(value): textAlignment = value
             case let .textNumberOfLines(value): textNumberOfLines = value
-            case let .padding(value): padding = value
             }
         }
         
@@ -213,7 +218,18 @@ public class GSMessage: NSObject {
             vc.tableView.addObserver(self, forKeyPath: "contentOffset", options: [.new], context: &observerContext)
         }
 
-        messageView.backgroundColor = backgroundColor
+        switch type {
+        case .success:
+            messageView.backgroundColor = GSMessage.successBackgroundColor
+        case .warning:
+            messageView.backgroundColor = GSMessage.warningBackgroundColor
+        case .error:
+            messageView.backgroundColor = GSMessage.errorBackgroundColor
+        case .info:
+            messageView.backgroundColor = GSMessage.infoBackgroundColor
+        }
+        
+        containerView.layer.zPosition = 1
         containerView.addSubview(messageView)
 
         messageText.text = text
@@ -249,11 +265,10 @@ public class GSMessage: NSObject {
     }
     
     @objc fileprivate func updateFrames() {
-        guard let inView = inView else { return }
+        guard inView != nil else { return }
         y       = 0
         offsetY = 0
         
-        let textWidth = messageWidth - padding.horizontal
         let textRect = (messageText.text ?? "").boundingRect(
             with: CGSize(width: textWidth,
                          height: .greatestFiniteMagnitude),
@@ -266,18 +281,30 @@ public class GSMessage: NSObject {
             height = max(textRect.height + padding.vertical, height)
         }
         
+        calculatePosition()
+        
+        updateMessageFrame()
+        updateCornerRadius()
+        updateMessageTextFrame(textRect: textRect)
+    }
+    
+    func calculatePosition() {
+        
         switch position {
+            
         case .top:
             y = max(0 - inView.frame.origin.y, 0)
             
             if let vc = inViewController {
+                
+                offsetY += margin.top
+                
                 if #available(iOS 11.0, *) {
-                    offsetY = vc.view.safeAreaInsets.top
+                    offsetY += vc.view.safeAreaInsets.top
                     break
                 }
                 
                 if vc.edgesForExtendedLayout == [] {
-                    offsetY = 0
                     break
                 }
                 
@@ -290,27 +317,62 @@ public class GSMessage: NSObject {
                 if !isNavBarHidden && isNavBarTranslucent && !isStatusBarHidden { offsetY += statusBarHeight }
                 if !isNavBarHidden && isNavBarTranslucent { offsetY += navBarHeight }
                 if (isNavBarHidden && !isStatusBarHidden) { offsetY += statusBarHeight }
+            } else {
+                y += margin.top
             }
             
         case .bottom:
             y = inView.bounds.size.height - height
             
             if let vc = inViewController {
+                offsetY -= margin.top
+                
                 if #available(iOS 11.0, *) {
-                    offsetY = -vc.view.safeAreaInsets.bottom
+                    offsetY -= vc.view.safeAreaInsets.bottom
                     y = inView.bounds.size.height - height + offsetY
                 }
+            } else {
+                y -= margin.bottom
             }
         }
+    }
+    
+    func updateMessageFrame() {
         
         containerView.frame = CGRect(
-            x: 0,
+            x: margin.left,
             y: y + (observingTableVC?.tableView.contentOffset.y ?? 0),
             width: messageWidth,
             height: messageHeight
         )
         
         messageView.frame = containerView.bounds
+    }
+    
+    func updateCornerRadius() {
+        
+        guard cornerRadius > 0 else { return }
+            
+        let corners: UIRectCorner
+        
+        if inViewController == nil {
+            corners = [.topLeft, .topRight, .bottomLeft, .bottomRight]
+        } else {
+            corners = [.bottomLeft, .bottomRight]
+        }
+        
+        let cornerLayer = CAShapeLayer()
+        
+        cornerLayer.path = UIBezierPath(
+            roundedRect:containerView.bounds,
+            byRoundingCorners: corners,
+            cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)
+        ).cgPath
+        
+        messageView.layer.mask = cornerLayer
+    }
+    
+    func updateMessageTextFrame(textRect: CGRect) {
         
         var textY = max(0, offsetY) + padding.top
         var textHeight = textRect.height
@@ -337,16 +399,16 @@ public class GSMessage: NSObject {
         )
     }
     
-    fileprivate func removeFromSuperview() {
+    func removeFromSuperview() {
         containerView.removeFromSuperview()
         inView?.uninstallMessage = nil
     }
 
 }
 
-extension GSMessage {
+@objc fileprivate extension GSMessage {
     
-    @objc fileprivate func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(notification: NSNotification) {
         guard let inView = self.inView else { return }
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -356,7 +418,7 @@ extension GSMessage {
         }
     }
     
-    @objc fileprivate func keyboardWillHide(notification: NSNotification) {
+    func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.messageView.frame.origin.y != 0 {
                 self.messageView.frame.origin.y -= keyboardSize.height
@@ -383,21 +445,21 @@ extension GSMessage {
     
 }
 
-extension UIView {
+fileprivate extension UIView {
 
-    fileprivate var installedMessage: GSMessage? {
+    var installedMessage: GSMessage? {
         get { return objc_getAssociatedObject(self, &installedMessageKey) as? GSMessage }
         set { objc_setAssociatedObject(self, &installedMessageKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
-    fileprivate var uninstallMessage: GSMessage? {
+    var uninstallMessage: GSMessage? {
         get { return objc_getAssociatedObject(self, &uninstallMessageKey) as? GSMessage }
         set { objc_setAssociatedObject(self, &uninstallMessageKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
 }
 
-extension GSMessageTextAlignment {
+fileprivate extension GSMessageTextAlignment {
 
     var nsTextAlignment: NSTextAlignment {
         switch self {
@@ -409,7 +471,7 @@ extension GSMessageTextAlignment {
     
 }
 
-extension UIEdgeInsets {
+fileprivate extension UIEdgeInsets {
     var horizontal: CGFloat { return left + right }
     var vertical:   CGFloat { return top + bottom }
 }

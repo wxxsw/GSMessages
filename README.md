@@ -35,7 +35,7 @@ self.hideMessage()
 - type          : success / error / warning / info
 - animation     : slide / fade
 - position      : top / bottom
-- textAlignment : left / center / right
+- textAlignment : topLeft / topCenter / topRight / left / center / right / bottomLeft / bottomCenter / bottomRight
 
 ```Swift
 self.showMessage("Some Text...", type: .success, options: [
@@ -43,13 +43,15 @@ self.showMessage("Some Text...", type: .success, options: [
     .animationDuration(0.3),
     .autoHide(true),
     .autoHideDelay(3.0),
+    .cornerRadius(0.0),
     .height(44.0),
     .hideOnTap(true),
+    .margin(.zero),
+    .padding(.init(top: 10, left: 30, bottom: 10, right: 30)),
     .position(.top),
     .textAlignment(.center),
-    .textColor(UIColor.white),
+    .textColor(.white),
     .textNumberOfLines(1),
-    .textPadding(30.0)
 ])
 ```
 
