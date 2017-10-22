@@ -358,7 +358,10 @@ public class GSMessage: NSObject {
         if inViewController == nil {
             corners = [.topLeft, .topRight, .bottomLeft, .bottomRight]
         } else {
-            corners = [.bottomLeft, .bottomRight]
+            switch position {
+            case .top:      corners = [.bottomLeft, .bottomRight]
+            case .bottom:   corners = [.topLeft, .topRight]
+            }
         }
         
         let cornerLayer = CAShapeLayer()
