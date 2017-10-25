@@ -42,8 +42,8 @@ public enum GSMessageOption {
     case animationDuration(TimeInterval)
     case autoHide(Bool)
     case autoHideDelay(Double) // Second
-    case cornerRadius(CGFloat)
-    case height(CGFloat)
+    case cornerRadius(Double)
+    case height(Double)
     case hideOnTap(Bool)
     case margin(UIEdgeInsets)
     case padding(UIEdgeInsets)
@@ -199,8 +199,8 @@ public class GSMessage: NSObject {
             case let .animationDuration(value): animationDuration = value
             case let .autoHide(value): autoHide = value
             case let .autoHideDelay(value): autoHideDelay = value
-            case let .cornerRadius(value): cornerRadius = value
-            case let .height(value): height = value
+            case let .cornerRadius(value): cornerRadius = CGFloat(value)
+            case let .height(value): height = CGFloat(value)
             case let .hideOnTap(value): hideOnTap = value
             case let .margin(value): margin = value
             case let .padding(value): padding = value
