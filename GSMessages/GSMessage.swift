@@ -103,7 +103,9 @@ public class GSMessage: NSObject {
 
         if animation == .fade {
             messageView.alpha = 0
-            UIView.animate(withDuration: animationDuration, animations: { self.messageView.alpha = 1 }) 
+          DispatchQueue.main.async {
+            UIView.animate(withDuration: self.animationDuration, animations: { self.messageView.alpha = 1 })
+          }
         }
 
         else if animation == .slide && position == .top {
@@ -133,10 +135,12 @@ public class GSMessage: NSObject {
         }
 
         if animation == .fade {
+          DispatchQueue.main.async {
             UIView.animate(withDuration: self.animationDuration,
-                animations: { [weak self] in if let this = self { this.messageView.alpha = 0 } },
-                completion: { [weak self] finished in self?.removeFromSuperview() }
+                           animations: { [weak self] in if let this = self { this.messageView.alpha = 0 } },
+                           completion: { [weak self] finished in self?.removeFromSuperview() }
             )
+          }
         }
 
         else if animation == .slide && position == .top {
