@@ -45,6 +45,7 @@ public enum GSMessageOption {
     case cornerRadius(Double)
     case height(Double)
     case hideOnTap(Bool)
+    case handleTap(()->())
     case margin(UIEdgeInsets)
     case padding(UIEdgeInsets)
     case position(GSMessagePosition)
@@ -169,6 +170,7 @@ public class GSMessage: NSObject {
     public private(set) var cornerRadius: CGFloat = 0
     public private(set) var height: CGFloat = 44
     public private(set) var hideOnTap: Bool = true
+    public private(set) var handleTap:  (() -> ())?
     public private(set) var margin: UIEdgeInsets = .zero
     public private(set) var padding: UIEdgeInsets = .init(top: 10, left: 30, bottom: 10, right: 30)
     public private(set) var position: GSMessagePosition = .top
@@ -202,6 +204,7 @@ public class GSMessage: NSObject {
             case let .cornerRadius(value): cornerRadius = CGFloat(value)
             case let .height(value): height = CGFloat(value)
             case let .hideOnTap(value): hideOnTap = value
+            case let .handleTap(value): handleTap = value
             case let .margin(value): margin = value
             case let .padding(value): padding = value
             case let .position(value): position = value
@@ -246,7 +249,11 @@ public class GSMessage: NSObject {
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         }
         
-        if hideOnTap { messageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))) }
+        if hideOnTap { messageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapForHide(_:)))) }
+        
+        if handleTap != nil {
+            messageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(_:))))
+        }
 
         self.inView = inView
         self.inViewController = inViewController
@@ -260,8 +267,14 @@ public class GSMessage: NSObject {
         NotificationCenter.default.removeObserver(self)
     }
 
-    @objc fileprivate func handleTap(_ tapGesture: UITapGestureRecognizer) {
+    @objc fileprivate func handleTapForHide(_ tapGesture: UITapGestureRecognizer) {
         hide(animated: true)
+    }
+    
+    @objc fileprivate func handleTap(_ tapGesture: UITapGestureRecognizer) {
+        if let handleTap = handleTap {
+            handleTap()
+        }
     }
     
     @objc fileprivate func updateFrames() {

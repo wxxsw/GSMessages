@@ -25,7 +25,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tapInfo(_ sender: AnyObject) {
-        showMessage("Some message", type: .info)
+        showMessage("Some message", type: .info, options: [
+            .handleTap({
+                print("Custom tap handle")
+            })
+        ])
     }
     
     @IBAction func tapEndless(_ sender: AnyObject) {
