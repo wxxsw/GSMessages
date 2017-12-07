@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     @IBAction func tapError(_ sender: AnyObject) {
         showMessage("Something failed", type: .error)
     }
-    
+
     @IBAction func tapWarning(_ sender: AnyObject) {
         showMessage("Some warning", type: .warning)
     }
@@ -29,14 +29,14 @@ class ViewController: UIViewController {
             .handleTap({
                 print("Custom tap handle")
             })
-            ])
+        ])
     }
     
     @IBAction func tapEndless(_ sender: AnyObject) {
         showMessage("Endless", type: .success, options: [
             .autoHide(false),
             .hideOnTap(false)
-            ])
+        ])
     }
     
     @IBAction func tapDismiss(_ sender: AnyObject) {
@@ -72,41 +72,41 @@ class ViewController: UIViewController {
         someView.showMessage("Margin", type: .success, options: [
             .margin(.init(top: 20, left: 20, bottom: 0, right: 20)),
             .cornerRadius(5)
-            ])
+        ])
     }
     
     @IBAction func tapPadding(_ sender: Any) {
         showMessage("Padding,Padding,Padding,Padding,Padding,Padding", type: .success, options: [
             .padding(.init(top: 10, left: 50, bottom: 10, right: 0))
-            ])
+        ])
     }
     
     @IBAction func tapRoundedCorners(_ sender: Any) {
         showMessage("Rounded Corners", type: .success, options: [
             .cornerRadius(10),
             .margin(.init(top: 0, left: 10, bottom: 0, right: 10))
-            ])
+        ])
     }
     
     @IBAction func tapTopLeft(_ sender: AnyObject) {
         showMessage("TopLeft", type: .success, options: [
             .textAlignment(.topLeft),
             .height(60)
-            ])
+        ])
     }
     
     @IBAction func tapCenter(_ sender: AnyObject) {
         showMessage("Center", type: .success, options: [
             .textAlignment(.center),
             .height(60)
-            ])
+        ])
     }
     
     @IBAction func tapBottomRight(_ sender: AnyObject) {
         showMessage("BottomRight", type: .success, options: [
             .textAlignment(.bottomRight),
             .height(60)
-            ])
+        ])
     }
     
     @IBAction func tapToggleNavBarTranslucent(_ sender: AnyObject) {
@@ -118,3 +118,4 @@ class ViewController: UIViewController {
     }
     
 }
+
