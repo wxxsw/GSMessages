@@ -50,6 +50,7 @@ public enum GSMessageOption {
     case padding(UIEdgeInsets)
     case position(GSMessagePosition)
     case textAlignment(GSMessageTextAlignment)
+    case textColor(UIColor)
     case textNumberOfLines(Int)
 }
 
@@ -278,8 +279,8 @@ public class GSMessage: NSObject {
     public private(set) var margin: UIEdgeInsets = .zero
     public private(set) var padding: UIEdgeInsets = .init(top: 10, left: 30, bottom: 10, right: 30)
     public private(set) var position: GSMessagePosition = .top
-    public private(set) var textColor: UIColor = .white
     public private(set) var textAlignment: GSMessageTextAlignment = .center
+    public private(set) var textColor: UIColor = .white
     public private(set) var textNumberOfLines: Int = 1
     
     public var messageWidth:  CGFloat {
@@ -317,6 +318,7 @@ public class GSMessage: NSObject {
             case let .padding(value): padding = value
             case let .position(value): position = value
             case let .textAlignment(value): textAlignment = value
+            case let .textColor(value): textColor = value
             case let .textNumberOfLines(value): textNumberOfLines = value
             }
         }
@@ -344,6 +346,7 @@ public class GSMessage: NSObject {
 
         messageText.attributedText = attributedText
         messageText.numberOfLines = textNumberOfLines
+        messageText.textColor = textColor
         messageText.textAlignment = textAlignment.nsTextAlignment
         messageView.addSubview(messageText)
         
