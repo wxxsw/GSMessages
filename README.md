@@ -38,7 +38,7 @@ self.hideMessage()
 - textAlignment : topLeft / topCenter / topRight / left / center / right / bottomLeft / bottomCenter / bottomRight
 
 ```Swift
-self.showMessage("Some Text...", type: .success, options: [
+self.showMessage("String or NSAttributedString", type: .success, options: [
     .animation(.slide),
     .animationDuration(0.3),
     .autoHide(true),
@@ -50,7 +50,6 @@ self.showMessage("Some Text...", type: .success, options: [
     .padding(.init(top: 10, left: 30, bottom: 10, right: 30)),
     .position(.top),
     .textAlignment(.center),
-    .textColor(.white),
     .textNumberOfLines(1),
 ])
 ```
