@@ -6,7 +6,7 @@
 <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
 <a href="http://cocoadocs.org/docsets/GSMessages"><img src="https://img.shields.io/badge/Cocoapods-compatible-4BC51D.svg?style=flat"></a>
 <a href="https://github.com/wxxsw/GSMessages/blob/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat"></a>
-<a href="https://github.com/wxxsw/GSMessages/tree/1.5.0"><img src="https://img.shields.io/badge/release-1.5.0-blue.svg"></a>
+<a href="https://github.com/wxxsw/GSMessages/tree/1.5.1"><img src="https://img.shields.io/badge/release-1.5.1-blue.svg"></a>
 </p>
 
 ## Demo
@@ -50,6 +50,7 @@ self.showMessage("String or NSAttributedString", type: .success, options: [
     .padding(.init(top: 10, left: 30, bottom: 10, right: 30)),
     .position(.top),
     .textAlignment(.center),
+    .textColor(.white)
     .textNumberOfLines(1),
 ])
 ```
