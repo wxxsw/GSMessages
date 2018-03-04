@@ -50,7 +50,7 @@ self.showMessage("String or NSAttributedString", type: .success, options: [
     .padding(.init(top: 10, left: 30, bottom: 10, right: 30)),
     .position(.top),
     .textAlignment(.center),
-    .textColor(.white)
+    .textColor(.white),
     .textNumberOfLines(1),
 ])
 ```
