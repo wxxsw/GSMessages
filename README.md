@@ -13,7 +13,7 @@
 
 ![](https://github.com/wxxsw/GSMessages/blob/master/ScreenShots/demo.gif)
 
-## Example
+## Usage
 
 To show notifications use the following code:
 ```Swift
@@ -65,6 +65,9 @@ GSMessage.warningBackgroundColor = UIColor(red: 230.0/255, green: 189.0/255, blu
 GSMessage.errorBackgroundColor   = UIColor(red: 219.0/255, green: 36.0/255,  blue: 27.0/255,  alpha: 0.70)
 GSMessage.infoBackgroundColor    = UIColor(red: 44.0/255,  green: 187.0/255, blue: 255.0/255, alpha: 0.90)
 ```
+
+## Example
+* [Passcode] (https://github.com/cruisediary/Passcode): Passcode for iOS RxSwift, ReactorKit and IGListKit example
 
 ## Requirements
 
