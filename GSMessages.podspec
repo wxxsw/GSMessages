@@ -12,4 +12,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'GSMessages'
+  
+  s.swift_version = "4.2"
+  
 end
