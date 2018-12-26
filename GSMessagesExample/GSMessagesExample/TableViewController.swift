@@ -102,7 +102,7 @@ class TableViewController: UITableViewController {
         case .control:
             switch indexPath.row {
             case 0:
-                showMessage("Fade", type: .success, options: [.animation(.fade)])
+                showMessage("Fade", type: .success, options: [.animations([.fade])])
             case 1:
                 showMessage("Endless", type: .success, options: [
                     .autoHide(false),

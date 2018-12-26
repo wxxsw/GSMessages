@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tapFade(_ sender: AnyObject) {
-        showMessage("Fade", type: .success, options: [.animation(.fade)])
+        showMessage("Fade", type: .success, options: [.animations([.fade])])
     }
     
     @IBAction func tapLongTime(_ sender: AnyObject) {
@@ -109,12 +109,58 @@ class ViewController: UIViewController {
         ])
     }
     
+    @IBAction func tapWindow(_ sender: Any) {
+        guard
+            let window = UIApplication.shared.keyWindow
+            else { return }
+        
+        let attributedText = NSAttributedString(
+            string: "In Window",
+            attributes: [
+                .font: GSMessage.font,
+                .paragraphStyle: NSParagraphStyle()
+            ]
+        )
+        
+        let paddingX: CGFloat = 14
+        let maxWidth = view.bounds.width - 20 - paddingX * 2
+        let size = attributedText.sizeToFits(CGSize(width: maxWidth, height: 20))
+        let marginX = (view.bounds.width - size.width - paddingX * 2) / 2
+        let marginY = (navigationController!.isNavigationBarHidden ? 0 : navigationController!.navigationBar.frame.height) + UIApplication.shared.statusBarFrame.height + 10
+        
+        let options: [GSMessageOption] = [
+            .animations([.fade, .slide]),
+            .cornerRadius(16),
+            .height(32),
+            .margin(.init(top: marginY, left: marginX, bottom: 0, right: marginX)),
+            .padding(.init(top: 6, left: paddingX, bottom: 6, right: paddingX)),
+        ]
+        
+        GSMessage.showMessageAddedTo(
+            attributedText: attributedText,
+            type: .success,
+            options: options,
+            inView: window,
+            inViewController: nil
+        )
+    }
+    
     @IBAction func tapToggleNavBarTranslucent(_ sender: AnyObject) {
         navigationController!.navigationBar.isTranslucent = !navigationController!.navigationBar.isTranslucent
     }
     
     @IBAction func tapToggleNavBarHidden(_ sender: AnyObject) {
         navigationController!.setNavigationBarHidden(!navigationController!.isNavigationBarHidden, animated: true)
+    }
+    
+}
+
+private extension NSAttributedString {
+    
+    func sizeToFits(_ size: CGSize) -> CGSize {
+        let framesetter = CTFramesetterCreateWithAttributedString(self as CFAttributedString)
+        let textSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRange(), nil, size, nil)
+        return textSize
     }
     
 }

@@ -21,8 +21,8 @@ public enum GSMessagePosition {
 }
 
 public enum GSMessageAnimation {
-    case slide
     case fade
+    case slide
 }
 
 public enum GSMessageTextAlignment {
@@ -38,7 +38,7 @@ public enum GSMessageTextAlignment {
 }
 
 public enum GSMessageOption {
-    case animation(GSMessageAnimation)
+    case animations([GSMessageAnimation])
     case animationDuration(TimeInterval)
     case autoHide(Bool)
     case autoHideDelay(Double) // Second
@@ -154,49 +154,35 @@ public class GSMessage: NSObject {
         inView?.addSubview(containerView)
         
         updateFrames()
+        
+        for animation in animations {
 
-        if animation == .fade {
-            
-            messageView.alpha = 0
-            
-            UIView.animate(withDuration: animationDuration,
-                           animations: { self.messageView.alpha = 1 })
-        }
-
-        else if animation == .slide && position == .top {
-            
-            messageView.transform = CGAffineTransform(
-                translationX: 0,
-                y: -messageHeight + -margin.top
-            )
-            
-            UIView.animate(
-                withDuration: animationDuration,
-                animations: {
-                    self.messageView.transform = CGAffineTransform(
+            switch animation {
+            case .fade:
+                messageView.alpha = 0
+            case .slide:
+                switch position {
+                case .top:
+                    messageView.transform = CGAffineTransform(
                         translationX: 0,
-                        y: 0
+                        y: -messageHeight + -margin.top
+                    )
+                case .bottom:
+                    messageView.transform = CGAffineTransform(
+                        translationX: 0,
+                        y: height + margin.bottom
                     )
                 }
-            )
-        }
-
-        else if animation == .slide && position == .bottom {
+            }
             
-            messageView.transform = CGAffineTransform(
-                translationX: 0,
-                y: height + margin.bottom
-            )
-            
-            UIView.animate(
-                withDuration: animationDuration,
-                animations: {
-                    self.messageView.transform = CGAffineTransform(
-                        translationX: 0,
-                        y: 0
-                    )
+            UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: {
+                switch animation {
+                case .fade:
+                    self.messageView.alpha = 1
+                case .slide:
+                    self.messageView.transform = CGAffineTransform(translationX: 0, y: 0)
                 }
-            )
+            })
         }
 
         if autoHide {
@@ -221,44 +207,30 @@ public class GSMessage: NSObject {
             removeFromSuperview()
             return
         }
-
-        if animation == .fade {
-            
-            UIView.animate(
-                withDuration: self.animationDuration,
-                animations: { self.messageView.alpha = 0 },
-                completion: { _ in self.removeFromSuperview() }
-            )
-        }
-
-        else if animation == .slide && position == .top {
-            
-            UIView.animate(
-                withDuration: self.animationDuration,
-                animations: {
-                    self.messageView.transform = CGAffineTransform(
-                        translationX: 0,
-                        y: -self.messageHeight + -self.margin.top
-                    )
-                },
-                completion: { _ in self.removeFromSuperview() }
-            )
-        }
-
-        else if animation == .slide && position == .bottom {
-            
-            UIView.animate(
-                withDuration: self.animationDuration,
-                animations: {
-                    self.messageView.transform = CGAffineTransform(
-                        translationX: 0,
-                        y: self.messageHeight + self.margin.bottom
-                    )
-                },
-                completion: { _ in self.removeFromSuperview() }
-            )
-        }
-
+        
+        UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseIn, animations: {
+            for animation in self.animations {
+                switch animation {
+                case .fade:
+                    self.messageView.alpha = 0
+                case .slide:
+                    switch self.position {
+                    case .top:
+                        self.messageView.transform = CGAffineTransform(
+                            translationX: 0,
+                            y: -self.messageHeight + -self.margin.top
+                        )
+                    case .bottom:
+                        self.messageView.transform = CGAffineTransform(
+                            translationX: 0,
+                            y: self.messageHeight + self.margin.bottom
+                        )
+                    }
+                }
+            }
+        }, completion: { [weak self] _ in
+            self?.removeFromSuperview()
+        })
     }
 
     public private(set) weak var inView: UIView!
@@ -268,7 +240,7 @@ public class GSMessage: NSObject {
     public private(set) var messageView = UIView()
     public private(set) var messageText = UILabel()
     
-    public private(set) var animation: GSMessageAnimation = .slide
+    public private(set) var animations: [GSMessageAnimation] = [.slide]
     public private(set) var animationDuration: TimeInterval = 0.3
     public private(set) var autoHide: Bool = true
     public private(set) var autoHideDelay: Double = 3
@@ -306,7 +278,7 @@ public class GSMessage: NSObject {
 
         for option in options ?? [] {
             switch (option) {
-            case let .animation(value): animation = value
+            case let .animations(value): animations = value
             case let .animationDuration(value): animationDuration = value
             case let .autoHide(value): autoHide = value
             case let .autoHideDelay(value): autoHideDelay = value
