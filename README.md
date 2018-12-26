@@ -39,7 +39,7 @@ self.hideMessage()
 
 ```Swift
 self.showMessage("String or NSAttributedString", type: .success, options: [
-    .animation(.slide),
+    .animations([.slide]),
     .animationDuration(0.3),
     .autoHide(true),
     .autoHideDelay(3.0),
