@@ -122,7 +122,3 @@ import GSMessages
 ## License
 
 GSMessages is available under the MIT license. See the LICENSE file for more info.
-
-### 方便的话领个红包，我也能得到一个 :]
-
-![wechatimg305](https://user-images.githubusercontent.com/921863/49807430-0162b280-fd95-11e8-8ff2-5687e335029c.jpeg)
