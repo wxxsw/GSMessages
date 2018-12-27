@@ -6,7 +6,7 @@
 <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
 <a href="http://cocoadocs.org/docsets/GSMessages"><img src="https://img.shields.io/badge/Cocoapods-compatible-4BC51D.svg?style=flat"></a>
 <a href="https://github.com/wxxsw/GSMessages/blob/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat"></a>
-<a href="https://github.com/wxxsw/GSMessages/tree/1.7.0"><img src="https://img.shields.io/badge/release-1.7.0-blue.svg"></a>
+<a href="https://github.com/wxxsw/GSMessages/tree/1.7.1"><img src="https://img.shields.io/badge/release-1.7.1-blue.svg"></a>
 </p>
 
 ## Demo
@@ -33,13 +33,13 @@ self.hideMessage()
 #### Options (Current setting is default value):
 
 - type          : success / error / warning / info
-- animation     : slide / fade
+- animation     : slide(.normal) / slide(.distance(50)) / fade
 - position      : top / bottom
 - textAlignment : topLeft / topCenter / topRight / left / center / right / bottomLeft / bottomCenter / bottomRight
 
 ```Swift
 self.showMessage("String or NSAttributedString", type: .success, options: [
-    .animations([.slide]),
+    .animations([.slide(.normal)]),
     .animationDuration(0.3),
     .autoHide(true),
     .autoHideDelay(3.0),
