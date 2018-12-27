@@ -22,7 +22,12 @@ public enum GSMessagePosition {
 
 public enum GSMessageAnimation {
     case fade
-    case slide
+    case slide(SlideType)
+    
+    public enum SlideType {
+        case normal
+        case distance(Double)
+    }
 }
 
 public enum GSMessageTextAlignment {
@@ -160,19 +165,15 @@ public class GSMessage: NSObject {
             switch animation {
             case .fade:
                 messageView.alpha = 0
-            case .slide:
-                switch position {
-                case .top:
-                    messageView.transform = CGAffineTransform(
-                        translationX: 0,
-                        y: -messageHeight + -margin.top
-                    )
-                case .bottom:
-                    messageView.transform = CGAffineTransform(
-                        translationX: 0,
-                        y: height + margin.bottom
-                    )
+            case .slide(let type):
+                let y: CGFloat
+                switch (type, position) {
+                case (.normal, .top): y = -messageHeight + -margin.top
+                case (.normal, .bottom): y = height + margin.bottom
+                case (.distance(let d), .top): y = CGFloat(-d)
+                case (.distance(let d), .bottom): y = CGFloat(d)
                 }
+                messageView.transform = CGAffineTransform(translationX: 0, y: y)
             }
             
             UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: {
@@ -213,19 +214,15 @@ public class GSMessage: NSObject {
                 switch animation {
                 case .fade:
                     self.messageView.alpha = 0
-                case .slide:
-                    switch self.position {
-                    case .top:
-                        self.messageView.transform = CGAffineTransform(
-                            translationX: 0,
-                            y: -self.messageHeight + -self.margin.top
-                        )
-                    case .bottom:
-                        self.messageView.transform = CGAffineTransform(
-                            translationX: 0,
-                            y: self.messageHeight + self.margin.bottom
-                        )
+                case .slide(let type):
+                    let y: CGFloat
+                    switch (type, self.position) {
+                    case (.normal, .top): y = -self.messageHeight + -self.margin.top
+                    case (.normal, .bottom): y = self.messageHeight + self.margin.bottom
+                    case (.distance(let d), .top): y = CGFloat(-d)
+                    case (.distance(let d), .bottom): y = CGFloat(d)
                     }
+                    self.messageView.transform = CGAffineTransform(translationX: 0, y: y)
                 }
             }
         }, completion: { [weak self] _ in
@@ -240,8 +237,8 @@ public class GSMessage: NSObject {
     public private(set) var messageView = UIView()
     public private(set) var messageText = UILabel()
     
-    public private(set) var animations: [GSMessageAnimation] = [.slide]
-    public private(set) var animationDuration: TimeInterval = 0.3
+    public private(set) var animations: [GSMessageAnimation] = [.slide(.normal)]
+    public private(set) var animationDuration: TimeInterval = 0.25
     public private(set) var autoHide: Bool = true
     public private(set) var autoHideDelay: Double = 3
     public private(set) var cornerRadius: CGFloat = 0

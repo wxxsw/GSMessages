@@ -129,7 +129,7 @@ class ViewController: UIViewController {
         let marginY = (navigationController!.isNavigationBarHidden ? 0 : navigationController!.navigationBar.frame.height) + UIApplication.shared.statusBarFrame.height + 10
         
         let options: [GSMessageOption] = [
-            .animations([.fade, .slide]),
+            .animations([.fade, .slide(.distance(50))]),
             .cornerRadius(16),
             .height(32),
             .margin(.init(top: marginY, left: marginX, bottom: 0, right: marginX)),
