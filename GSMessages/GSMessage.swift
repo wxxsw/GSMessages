@@ -57,6 +57,7 @@ public enum GSMessageOption {
     case textAlignment(GSMessageTextAlignment)
     case textColor(UIColor)
     case textNumberOfLines(Int)
+    case isInsideSafeAreaInsets(Bool)
 }
 
 extension UIViewController {
@@ -251,6 +252,7 @@ public class GSMessage: NSObject {
     public private(set) var textAlignment: GSMessageTextAlignment = .center
     public private(set) var textColor: UIColor = .white
     public private(set) var textNumberOfLines: Int = 1
+    public private(set) var isInsideSafeAreaInsets: Bool = true
     
     public var messageWidth:  CGFloat {
         return inView.frame.width - margin.horizontal
@@ -289,6 +291,7 @@ public class GSMessage: NSObject {
             case let .textAlignment(value): textAlignment = value
             case let .textColor(value): textColor = value
             case let .textNumberOfLines(value): textNumberOfLines = value
+            case let .isInsideSafeAreaInsets(value): isInsideSafeAreaInsets = value
             }
         }
         
@@ -410,6 +413,10 @@ public class GSMessage: NSObject {
                 if (isNavBarHidden && !isStatusBarHidden) { offsetY += statusBarHeight }
             } else {
                 y += margin.top
+                
+                if isInsideSafeAreaInsets, #available(iOS 11.0, *) {
+                    y += inView.safeAreaInsets.top
+                }
             }
             
         case .bottom:
@@ -424,6 +431,10 @@ public class GSMessage: NSObject {
                 }
             } else {
                 y -= margin.bottom
+                
+                if isInsideSafeAreaInsets, #available(iOS 11.0, *) {
+                    y -= inView.safeAreaInsets.bottom
+                }
             }
         }
     }
