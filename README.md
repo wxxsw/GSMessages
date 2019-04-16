@@ -1,12 +1,12 @@
 ![GSMessages](https://github.com/wxxsw/GSMessages/blob/master/ScreenShots/logo.png)
 
 <p align="center">
-<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/language-swift4-f48041.svg?style=flat"></a>
+<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/language-swift5-f48041.svg?style=flat"></a>
 <a href="https://developer.apple.com/ios"><img src="https://img.shields.io/badge/platform-iOS%208%2B-blue.svg?style=flat"></a>
 <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
 <a href="http://cocoadocs.org/docsets/GSMessages"><img src="https://img.shields.io/badge/Cocoapods-compatible-4BC51D.svg?style=flat"></a>
 <a href="https://github.com/wxxsw/GSMessages/blob/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat"></a>
-<a href="https://github.com/wxxsw/GSMessages/tree/1.7.1"><img src="https://img.shields.io/badge/release-1.7.1-blue.svg"></a>
+<a href="https://github.com/wxxsw/GSMessages/tree/1.7.2"><img src="https://img.shields.io/badge/release-1.7.2-blue.svg"></a>
 </p>
 
 ## Demo
@@ -69,6 +69,11 @@ GSMessage.infoBackgroundColor    = UIColor(red: 44.0/255,  green: 187.0/255, blu
 ## Requirements
 
 ### Master
+
+- iOS 8.0+
+- Xcode 10.2+ (Swift 5.x)
+
+### [1.7.1](https://github.com/wxxsw/GSMessages/tree/1.7.1)
 
 - iOS 8.0+
 - Xcode 10.0+ (Swift 4.2)
