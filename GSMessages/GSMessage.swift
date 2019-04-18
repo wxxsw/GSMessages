@@ -42,6 +42,16 @@ public enum GSMessageTextAlignment {
     case bottomRight
 }
 
+public struct GSMessageBorder {
+    let lineColor: UIColor
+    let lineWidth: CGFloat
+    
+    init(lineColor: UIColor, lineWidth: CGFloat) {
+        self.lineColor = lineColor
+        self.lineWidth = lineWidth
+    }
+}
+
 public enum GSMessageOption {
     case animations([GSMessageAnimation])
     case animationDuration(TimeInterval)
@@ -58,6 +68,7 @@ public enum GSMessageOption {
     case textColor(UIColor)
     case textNumberOfLines(Int)
     case isInsideSafeAreaInsets(Bool)
+    case border(GSMessageBorder)
 }
 
 extension UIViewController {
@@ -253,6 +264,7 @@ public class GSMessage: NSObject {
     public private(set) var textColor: UIColor = .white
     public private(set) var textNumberOfLines: Int = 1
     public private(set) var isInsideSafeAreaInsets: Bool = true
+    public private(set) var border: GSMessageBorder? = nil 
     
     public var messageWidth:  CGFloat {
         return inView.frame.width - margin.horizontal
@@ -292,6 +304,7 @@ public class GSMessage: NSObject {
             case let .textColor(value): textColor = value
             case let .textNumberOfLines(value): textNumberOfLines = value
             case let .isInsideSafeAreaInsets(value): isInsideSafeAreaInsets = value
+            case let .border(value): border = value
             }
         }
         
@@ -379,6 +392,7 @@ public class GSMessage: NSObject {
         
         updateMessageFrame()
         updateCornerRadius()
+        updateBorder()
         updateMessageTextSize(textSize: textSize)
     }
     
@@ -389,53 +403,63 @@ public class GSMessage: NSObject {
         case .top:
             y = max(0 - inView.frame.origin.y, 0)
             
-            if let vc = inViewController {
+            if isInsideSafeAreaInsets {
+                
+                y += margin.top
+                
+                if #available(iOS 11.0, *) {
+                    y += inView.safeAreaInsets.top
+                }
+                
+            } else {
                 
                 offsetY += margin.top
                 
-                if #available(iOS 11.0, *) {
-                    offsetY += vc.view.safeAreaInsets.top
-                    break
+                if let vc = inViewController {
+                    if #available(iOS 11.0, *) {
+                        offsetY += vc.view.safeAreaInsets.top
+                        break
+                    }
+                    
+                    if vc.edgesForExtendedLayout == [] {
+                        break
+                    }
+                    
+                    let statusBarHeight = UIApplication.shared.statusBarFrame.height
+                    let nav = vc.navigationController ?? (vc as? UINavigationController)
+                    let isNavBarHidden = nav?.isNavigationBarHidden ?? true
+                    let isNavBarTranslucent = nav?.navigationBar.isTranslucent ?? false
+                    let navBarHeight = nav?.navigationBar.frame.size.height ?? 44
+                    let isStatusBarHidden = UIApplication.shared.isStatusBarHidden
+                    if !isNavBarHidden && isNavBarTranslucent && !isStatusBarHidden { offsetY += statusBarHeight }
+                    if !isNavBarHidden && isNavBarTranslucent { offsetY += navBarHeight }
+                    if (isNavBarHidden && !isStatusBarHidden) { offsetY += statusBarHeight }
                 }
                 
-                if vc.edgesForExtendedLayout == [] {
-                    break
-                }
-                
-                let statusBarHeight = UIApplication.shared.statusBarFrame.height
-                let nav = vc.navigationController ?? (vc as? UINavigationController)
-                let isNavBarHidden = nav?.isNavigationBarHidden ?? true
-                let isNavBarTranslucent = nav?.navigationBar.isTranslucent ?? false
-                let navBarHeight = nav?.navigationBar.frame.size.height ?? 44
-                let isStatusBarHidden = UIApplication.shared.isStatusBarHidden
-                if !isNavBarHidden && isNavBarTranslucent && !isStatusBarHidden { offsetY += statusBarHeight }
-                if !isNavBarHidden && isNavBarTranslucent { offsetY += navBarHeight }
-                if (isNavBarHidden && !isStatusBarHidden) { offsetY += statusBarHeight }
-            } else {
-                y += margin.top
-                
-                if isInsideSafeAreaInsets, #available(iOS 11.0, *) {
-                    y += inView.safeAreaInsets.top
-                }
             }
             
         case .bottom:
             y = inView.bounds.size.height - height
             
-            if let vc = inViewController {
-                offsetY -= margin.top
-                
-                if #available(iOS 11.0, *) {
-                    offsetY -= vc.view.safeAreaInsets.bottom
-                    y = inView.bounds.size.height - height + offsetY
-                }
-            } else {
+            if isInsideSafeAreaInsets {
                 y -= margin.bottom
                 
-                if isInsideSafeAreaInsets, #available(iOS 11.0, *) {
+                if #available(iOS 11.0, *) {
                     y -= inView.safeAreaInsets.bottom
                 }
+                
+            } else {
+                
+                offsetY -= margin.bottom
+                
+                if let vc = inViewController, #available(iOS 11.0, *) {
+                    offsetY -= vc.view.safeAreaInsets.bottom
+                }
+                
+                y = inView.bounds.size.height - height + offsetY
+                
             }
+            
         }
     }
     
@@ -457,7 +481,7 @@ public class GSMessage: NSObject {
             
         let corners: UIRectCorner
         
-        if inViewController == nil {
+        if inViewController == nil || isInsideSafeAreaInsets {
             corners = [.topLeft, .topRight, .bottomLeft, .bottomRight]
         } else {
             switch position {
@@ -475,6 +499,28 @@ public class GSMessage: NSObject {
         ).cgPath
         
         messageView.layer.mask = cornerLayer
+    }
+    
+    func updateBorder() {
+        guard let border = border else { return }
+        
+        let borderLayer = CAShapeLayer()
+        
+        if let cgPath = ((messageView.layer.mask) as? CAShapeLayer)?.path {
+            borderLayer.path = cgPath
+        } else {
+            borderLayer.path = UIBezierPath(
+                roundedRect: containerView.bounds,
+                byRoundingCorners: [.topLeft, .topRight, .bottomLeft, .bottomRight],
+                cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)
+                ).cgPath
+        }
+        
+        borderLayer.fillColor = UIColor.clear.cgColor
+        borderLayer.strokeColor = border.lineColor.cgColor
+        borderLayer.lineWidth = border.lineWidth
+
+        messageView.layer.addSublayer(borderLayer)
     }
     
     func updateMessageTextSize(textSize: CGSize) {
