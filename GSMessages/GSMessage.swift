@@ -236,7 +236,12 @@ public class GSMessage: NSObject {
     
     public private(set) var containerView = UIView()
     public private(set) var messageView = UIView()
-    public private(set) var messageText = UILabel()
+    public private(set) var messageText = UILabel() {
+        didSet {
+            let size = CGSize(width: UIScreen.main.bounds.width - 60, height: .infinity)
+            height = NSString(string: messageText.text ?? "").boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [.font : messageText.font ?? UIFont.systemFont(ofSize: 15)], context: nil).height
+        }
+    }
     
     public private(set) var animations: [GSMessageAnimation] = [.slide(.normal)]
     public private(set) var animationDuration: TimeInterval = 0.25
@@ -251,7 +256,7 @@ public class GSMessage: NSObject {
     public private(set) var position: GSMessagePosition = .top
     public private(set) var textAlignment: GSMessageTextAlignment = .center
     public private(set) var textColor: UIColor = .white
-    public private(set) var textNumberOfLines: Int = 1
+    public private(set) var textNumberOfLines: Int = 0
     public private(set) var isInsideSafeAreaInsets: Bool = true
     
     public var messageWidth:  CGFloat {
