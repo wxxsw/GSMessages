@@ -58,6 +58,7 @@ public enum GSMessageOption {
     case textColor(UIColor)
     case textNumberOfLines(Int)
     case isInsideSafeAreaInsets(Bool)
+    case accessibilityIdentifier(String)
 }
 
 extension UIViewController {
@@ -253,6 +254,7 @@ public class GSMessage: NSObject {
     public private(set) var textColor: UIColor = .white
     public private(set) var textNumberOfLines: Int = 1
     public private(set) var isInsideSafeAreaInsets: Bool = true
+    public private(set) var accessibilityIdentifier: String?
     
     public var messageWidth:  CGFloat {
         return inView.frame.width - margin.horizontal
@@ -292,6 +294,7 @@ public class GSMessage: NSObject {
             case let .textColor(value): textColor = value
             case let .textNumberOfLines(value): textNumberOfLines = value
             case let .isInsideSafeAreaInsets(value): isInsideSafeAreaInsets = value
+            case let .accessibilityIdentifier(value): accessibilityIdentifier = value
             }
         }
         
@@ -321,6 +324,7 @@ public class GSMessage: NSObject {
         messageText.textColor = textColor
         messageText.textAlignment = textAlignment.nsTextAlignment
         messageView.addSubview(messageText)
+        messageView.accessibilityIdentifier = accessibilityIdentifier
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateFrames), name: UIDevice.orientationDidChangeNotification, object: nil)
         
