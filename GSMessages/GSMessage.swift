@@ -43,6 +43,7 @@ public enum GSMessageTextAlignment {
 }
 
 public enum GSMessageOption {
+    case accessibilityIdentifier(String)
     case animations([GSMessageAnimation])
     case animationDuration(TimeInterval)
     case autoHide(Bool)
@@ -51,14 +52,13 @@ public enum GSMessageOption {
     case height(Double)
     case hideOnTap(Bool)
     case handleTap(()->())
+    case isInsideSafeAreaInsets(Bool)
     case margin(UIEdgeInsets)
     case padding(UIEdgeInsets)
     case position(GSMessagePosition)
     case textAlignment(GSMessageTextAlignment)
     case textColor(UIColor)
     case textNumberOfLines(Int)
-    case isInsideSafeAreaInsets(Bool)
-    case accessibilityIdentifier(String)
 }
 
 extension UIViewController {
@@ -239,6 +239,7 @@ public class GSMessage: NSObject {
     public private(set) var messageView = UIView()
     public private(set) var messageText = UILabel()
     
+    public private(set) var accessibilityIdentifier: String?
     public private(set) var animations: [GSMessageAnimation] = [.slide(.normal)]
     public private(set) var animationDuration: TimeInterval = 0.25
     public private(set) var autoHide: Bool = true
@@ -247,14 +248,13 @@ public class GSMessage: NSObject {
     public private(set) var height: CGFloat = 44
     public private(set) var hideOnTap: Bool = true
     public private(set) var handleTap:  (() -> ())?
+    public private(set) var isInsideSafeAreaInsets: Bool = true
     public private(set) var margin: UIEdgeInsets = .zero
     public private(set) var padding: UIEdgeInsets = .init(top: 10, left: 30, bottom: 10, right: 30)
     public private(set) var position: GSMessagePosition = .top
     public private(set) var textAlignment: GSMessageTextAlignment = .center
     public private(set) var textColor: UIColor = .white
     public private(set) var textNumberOfLines: Int = 1
-    public private(set) var isInsideSafeAreaInsets: Bool = true
-    public private(set) var accessibilityIdentifier: String?
     
     public var messageWidth:  CGFloat {
         return inView.frame.width - margin.horizontal
@@ -279,6 +279,7 @@ public class GSMessage: NSObject {
 
         for option in options ?? [] {
             switch (option) {
+            case let .accessibilityIdentifier(value): accessibilityIdentifier = value
             case let .animations(value): animations = value
             case let .animationDuration(value): animationDuration = value
             case let .autoHide(value): autoHide = value
@@ -287,14 +288,13 @@ public class GSMessage: NSObject {
             case let .height(value): height = CGFloat(value)
             case let .hideOnTap(value): hideOnTap = value
             case let .handleTap(value): handleTap = value
+            case let .isInsideSafeAreaInsets(value): isInsideSafeAreaInsets = value
             case let .margin(value): margin = value
             case let .padding(value): padding = value
             case let .position(value): position = value
             case let .textAlignment(value): textAlignment = value
             case let .textColor(value): textColor = value
             case let .textNumberOfLines(value): textNumberOfLines = value
-            case let .isInsideSafeAreaInsets(value): isInsideSafeAreaInsets = value
-            case let .accessibilityIdentifier(value): accessibilityIdentifier = value
             }
         }
         

@@ -39,6 +39,7 @@ self.hideMessage()
 
 ```Swift
 self.showMessage("String or NSAttributedString", type: .success, options: [
+    .accessibilityIdentifier(nil)
     .animations([.slide(.normal)]),
     .animationDuration(0.3),
     .autoHide(true),
@@ -46,6 +47,8 @@ self.showMessage("String or NSAttributedString", type: .success, options: [
     .cornerRadius(0.0),
     .height(44.0),
     .hideOnTap(true),
+    .handleTap({}),
+    .isInsideSafeAreaInsets(true)
     .margin(.zero),
     .padding(.init(top: 10, left: 30, bottom: 10, right: 30)),
     .position(.top),
@@ -71,7 +74,7 @@ GSMessage.infoBackgroundColor    = UIColor(red: 44.0/255,  green: 187.0/255, blu
 ### Master
 
 - iOS 8.0+
-- Xcode 10.2+ (Swift 5.x)
+- Xcode 11+ (Swift 5.x)
 
 ### [1.7.1](https://github.com/wxxsw/GSMessages/tree/1.7.1)
 
