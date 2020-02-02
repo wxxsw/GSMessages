@@ -39,7 +39,7 @@ self.hideMessage()
 
 ```Swift
 self.showMessage("String or NSAttributedString", type: .success, options: [
-    .accessibilityIdentifier(nil)
+    .accessibilityIdentifier(nil),
     .animations([.slide(.normal)]),
     .animationDuration(0.3),
     .autoHide(true),
@@ -48,7 +48,7 @@ self.showMessage("String or NSAttributedString", type: .success, options: [
     .height(44.0),
     .hideOnTap(true),
     .handleTap({}),
-    .isInsideSafeAreaInsets(true)
+    .isInsideSafeAreaInsets(true),
     .margin(.zero),
     .padding(.init(top: 10, left: 30, bottom: 10, right: 30)),
     .position(.top),
