@@ -370,7 +370,7 @@ public class GSMessage: NSObject {
         var textSize: CGSize = .zero
         
         if let attrText = messageText.attributedText {
-            let size = CGSize(width: textWidth / 2, height: 999)
+            let size = CGSize(width: textWidth, height: 999)
             let framesetter = CTFramesetterCreateWithAttributedString(attrText)
             textSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRange(), nil, size, nil)
         }
