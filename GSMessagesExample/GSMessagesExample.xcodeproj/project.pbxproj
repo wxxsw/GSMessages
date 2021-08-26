@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,7 +12,7 @@
 		1885CFD01B4F6FA100F49F2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1885CFCE1B4F6FA100F49F2A /* Main.storyboard */; };
 		1885CFD21B4F6FA100F49F2A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1885CFD11B4F6FA100F49F2A /* Images.xcassets */; };
 		1885CFD51B4F6FA100F49F2A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1885CFD31B4F6FA100F49F2A /* LaunchScreen.xib */; };
-		1885CFEC1B4F70DD00F49F2A /* GSMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885CFEB1B4F70DD00F49F2A /* GSMessage.swift */; };
+		7129811526D67AE00061A9B6 /* GSMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 7129811426D67AE00061A9B6 /* GSMessages */; };
 		A3031DE71EEBAE2200599066 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3031DE61EEBAE2200599066 /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -24,7 +24,7 @@
 		1885CFCF1B4F6FA100F49F2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1885CFD11B4F6FA100F49F2A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1885CFD41B4F6FA100F49F2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		1885CFEB1B4F70DD00F49F2A /* GSMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSMessage.swift; sourceTree = "<group>"; };
+		7129811026D67A840061A9B6 /* GSMessages */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GSMessages; path = ..; sourceTree = "<group>"; };
 		A3031DE61EEBAE2200599066 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -33,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7129811526D67AE00061A9B6 /* GSMessages in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,7 +43,7 @@
 		1885CFBC1B4F6FA100F49F2A = {
 			isa = PBXGroup;
 			children = (
-				1885CFEA1B4F70DD00F49F2A /* GSMessages */,
+				7129811026D67A840061A9B6 /* GSMessages */,
 				1885CFC71B4F6FA100F49F2A /* GSMessagesExample */,
 				1885CFC61B4F6FA100F49F2A /* Products */,
 			);
@@ -78,15 +79,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1885CFEA1B4F70DD00F49F2A /* GSMessages */ = {
-			isa = PBXGroup;
-			children = (
-				1885CFEB1B4F70DD00F49F2A /* GSMessage.swift */,
-			);
-			name = GSMessages;
-			path = ../GSMessages;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -101,8 +93,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				7129811226D67AAB0061A9B6 /* PBXTargetDependency */,
 			);
 			name = GSMessagesExample;
+			packageProductDependencies = (
+				7129811426D67AE00061A9B6 /* GSMessages */,
+			);
 			productName = GSMessagesExample;
 			productReference = 1885CFC51B4F6FA100F49F2A /* GSMessagesExample.app */;
 			productType = "com.apple.product-type.application";
@@ -115,7 +111,7 @@
 			attributes = {
 				LastSwiftMigration = 0720;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = Gesen;
 				TargetAttributes = {
 					1885CFC41B4F6FA100F49F2A = {
@@ -163,12 +159,18 @@
 			files = (
 				1885CFCD1B4F6FA100F49F2A /* ViewController.swift in Sources */,
 				1885CFCB1B4F6FA100F49F2A /* AppDelegate.swift in Sources */,
-				1885CFEC1B4F70DD00F49F2A /* GSMessage.swift in Sources */,
 				A3031DE71EEBAE2200599066 /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7129811226D67AAB0061A9B6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 7129811126D67AAB0061A9B6 /* GSMessages */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1885CFCE1B4F6FA100F49F2A /* Main.storyboard */ = {
@@ -213,6 +215,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -238,7 +241,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -270,6 +273,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -288,10 +292,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -305,8 +310,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = DBTR8NXFB4;
 				INFOPLIST_FILE = GSMessagesExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "me.gesen.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -322,8 +330,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = DBTR8NXFB4;
 				INFOPLIST_FILE = GSMessagesExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "me.gesen.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -353,6 +364,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7129811126D67AAB0061A9B6 /* GSMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GSMessages;
+		};
+		7129811426D67AE00061A9B6 /* GSMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GSMessages;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1885CFBD1B4F6FA100F49F2A /* Project object */;
 }
