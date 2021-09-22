@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "GSMessages"
-  s.version      = "1.7.4"
+  s.version      = "1.7.5"
   s.summary      = "A simple style messages/notifications, in Swift."
   s.homepage     = "https://github.com/wxxsw/GSMessages"
 
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.author       = { "Gesen" => "i@gesen.me" }
   s.source       = { :git => "https://github.com/wxxsw/GSMessages.git", :tag => s.version.to_s }
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '9.0'
   s.requires_arc = true
 
   s.source_files = 'GSMessages'
